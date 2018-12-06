@@ -1,26 +1,27 @@
 import React, {Component} from 'react';
-import {Text, View, Image} from 'react-native';
+import {Text, View, Image, Linking} from 'react-native';
 import Card from "./Card";
 import CardSection from "./CardSection";
 import propTypes from "prop-types";
+import Button from "./Button";
+
+
 
 class AlbumDetail extends Component {
-
-    static propTypes = {
-        album: propTypes.string.isRequired
-    };
 
     render() {
         const {
             title,
             artist,
             thumbnail_image,
-            image
+            image,
+            url
         } = this.props.album;
+
         const {
             thumbnailStyle,
-            headerContentStyle
-            , thumbnailContainerStyle,
+            headerContentStyle,
+            thumbnailContainerStyle,
             headerTextStyle,
             imageStyle
         } = styles;
@@ -37,13 +38,18 @@ class AlbumDetail extends Component {
                     </View>
                 </CardSection>
                 <CardSection>
-                    <Image source={{uri: image}} style={imageStyle}/>
-                    <Text>{image}</Text>
+                    <Image source={{uri: image}}
+                           style={imageStyle}/>
+                </CardSection>
+                <CardSection>
+                    <Button OnPress={() => Linking.openURL(url)}>
+                    </Button>
                 </CardSection>
             </Card>
         );
     }
 }
+
 
 const styles = {
     headerContentStyle: {
@@ -61,12 +67,12 @@ const styles = {
         marginLeft: 10
     },
     headerTextStyle: {
-        fontSize: 15
+        fontSize: 18
     },
     imageStyle: {
-        height: 300,
-        flex: 1,
-        width: 300
+        width: null,
+        height: 300
     }
 };
+
 export default AlbumDetail;
