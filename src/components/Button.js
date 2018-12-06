@@ -3,7 +3,7 @@ import {TouchableOpacity, Text} from 'react-native';
 import propTypes from "prop-types";
 
 
-const Button = ({OnPress}) => {
+const Button = ({OnPress,children}) => {
 
     const {
         ButtonStyle,
@@ -12,7 +12,7 @@ const Button = ({OnPress}) => {
 
     return (
         <TouchableOpacity style={ButtonStyle} onPress={OnPress}>
-            <Text style={textStyle}>Click me !!!</Text>
+            <Text style={textStyle}>{children}</Text>
         </TouchableOpacity>);
 };
 

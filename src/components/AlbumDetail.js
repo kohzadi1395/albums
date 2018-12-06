@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Text, View, Image, Linking} from 'react-native';
 import Card from "./Card";
 import CardSection from "./CardSection";
-import propTypes from "prop-types";
 import Button from "./Button";
 
 
@@ -43,6 +42,7 @@ class AlbumDetail extends Component {
                 </CardSection>
                 <CardSection>
                     <Button OnPress={() => Linking.openURL(url)}>
+                        Buy Now
                     </Button>
                 </CardSection>
             </Card>
