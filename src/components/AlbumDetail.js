@@ -5,7 +5,6 @@ import CardSection from "./CardSection";
 import Button from "./Button";
 
 
-
 class AlbumDetail extends Component {
 
     render() {
@@ -22,18 +21,20 @@ class AlbumDetail extends Component {
             headerContentStyle,
             thumbnailContainerStyle,
             headerTextStyle,
-            imageStyle
-        } = styles;
+            imageStyle,
+            mainContentStyle        } = styles;
 
         return (
             <Card>
                 <CardSection>
-                    <View style={thumbnailContainerStyle}>
-                        <Image source={{uri: thumbnail_image}} style={thumbnailStyle}/>
-                    </View>
-                    <View style={headerContentStyle}>
-                        <Text style={headerTextStyle}>{title}</Text>
-                        <Text>{artist}</Text>
+                    <View style={mainContentStyle}>
+                        <View style={thumbnailContainerStyle}>
+                            <Image source={{uri: thumbnail_image}} style={thumbnailStyle}/>
+                        </View>
+                        <View style={headerContentStyle}>
+                            <Text style={headerTextStyle}>{title}</Text>
+                            <Text>{artist}</Text>
+                        </View>
                     </View>
                 </CardSection>
                 <CardSection>
@@ -52,6 +53,9 @@ class AlbumDetail extends Component {
 
 
 const styles = {
+    mainContentStyle: {
+        flexDirection: 'row',
+    },
     headerContentStyle: {
         flexDirection: 'column',
         justifyContent: 'space-around'
@@ -64,7 +68,7 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 10,
-        marginLeft: 10
+        marginLeft: 10,
     },
     headerTextStyle: {
         fontSize: 18
