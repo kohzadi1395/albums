@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     StyleSheet,
     Text,
@@ -8,27 +8,40 @@ import {
     Image,
     Alert
 } from 'react-native';
+import PropTypes from "prop-types";
 
 export class LoginView extends Component {
 
     state = {
-        email   : '',
+        email: '',
         password: '',
     }
+
     constructor(props) {
         super(props);
 
     }
 
     onClickListener = (viewId) => {
-        Alert.alert("Alert", "Button pressed "+viewId);
+        Alert.alert("Alert", "Button pressed " + viewId);
+    }
+
+    Login() {
+        if (true) {
+            {this.props.OnLogin};
+        }
+        else
+        {
+
+        }
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.inputContainer}>
-                    <Image style={styles.inputIcon} source={{uri: 'https://png.icons8.com/message/ultraviolet/50/3498db'}}/>
+                    <Image style={styles.inputIcon}
+                           source={{uri: 'https://png.icons8.com/message/ultraviolet/50/3498db'}}/>
                     <TextInput style={styles.inputs}
                                placeholder="Email"
                                keyboardType="email-address"
@@ -37,7 +50,8 @@ export class LoginView extends Component {
                 </View>
 
                 <View style={styles.inputContainer}>
-                    <Image style={styles.inputIcon} source={{uri: 'https://png.icons8.com/key-2/ultraviolet/50/3498db'}}/>
+                    <Image style={styles.inputIcon}
+                           source={{uri: 'https://png.icons8.com/key-2/ultraviolet/50/3498db'}}/>
                     <TextInput style={styles.inputs}
                                placeholder="Password"
                                secureTextEntry={true}
@@ -45,21 +59,34 @@ export class LoginView extends Component {
                                onChangeText={(password) => this.setState({password})}/>
                 </View>
 
-                <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={() => this.onClickListener('login')}>
+                <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={this.Login}>
                     <Text style={styles.loginText}>Login</Text>
                 </TouchableHighlight>
 
-                <TouchableHighlight style={styles.buttonContainer} onPress={() => this.onClickListener('restore_password')}>
+                <TouchableHighlight style={styles.buttonContainer} onPress={this.props.OnForgotPassword}>
                     <Text>Forgot your password?</Text>
                 </TouchableHighlight>
 
-                <TouchableHighlight style={styles.buttonContainer} onPress={() => this.onClickListener('register')}>
+                <TouchableHighlight style={styles.buttonContainer} onPress={this.props.OnRegister}>
                     <Text>Register</Text>
                 </TouchableHighlight>
             </View>
         );
     }
 }
+
+LoginView.defaultProps = {
+    OnForgotPassword: function () {
+        this.onClickListener('Forgot_Password');
+    },
+    OnRegister: function () {
+        this.onClickListener('Register');
+    }
+};
+
+LoginView.propTypes = {
+    OnLogin: PropTypes.func.isRequired
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -71,34 +98,34 @@ const styles = StyleSheet.create({
     inputContainer: {
         borderBottomColor: '#F5FCFF',
         backgroundColor: '#FFFFFF',
-        borderRadius:30,
+        borderRadius: 30,
         borderBottomWidth: 1,
-        width:250,
-        height:45,
-        marginBottom:20,
+        width: 250,
+        height: 45,
+        marginBottom: 20,
         flexDirection: 'row',
-        alignItems:'center'
+        alignItems: 'center'
     },
-    inputs:{
-        height:45,
-        marginLeft:16,
+    inputs: {
+        height: 45,
+        marginLeft: 16,
         borderBottomColor: '#FFFFFF',
-        flex:1,
+        flex: 1,
     },
-    inputIcon:{
-        width:30,
-        height:30,
-        marginLeft:15,
+    inputIcon: {
+        width: 30,
+        height: 30,
+        marginLeft: 15,
         justifyContent: 'center'
     },
     buttonContainer: {
-        height:45,
+        height: 45,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom:20,
-        width:250,
-        borderRadius:30,
+        marginBottom: 20,
+        width: 250,
+        borderRadius: 30,
     },
     loginButton: {
         backgroundColor: "#00b5ec",

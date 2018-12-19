@@ -17,13 +17,13 @@ class Splash extends Component {
         Animated.spring(this.animatedValue, {
             toValue: 1,
             friction: 4,
-            delay: 2500
+            delay: 2000
         }).start();
 
         Animated.timing(this.animatedValue2, {
             toValue: 1,
             delay: 200,
-            duration: 1300
+            duration: 3000
         }).start(this.props.OnFinish)
         ;
     }
@@ -119,4 +119,4 @@ const styles = StyleSheet.create({
 Splash.propTypes = {
     OnFinish: PropTypes.func.isRequired
 };
-export  {Splash};
+export {Splash};

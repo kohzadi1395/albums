@@ -8,25 +8,33 @@
 
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {AlbumList,Splash} from "./src";
-
+import {AlbumList, LoginView, Splash} from "./src";
 
 
 type Props = {};
 export default class App extends Component<Props> {
-    state = {animationFinish: false};
+    state = {
+        animationFinish: false,
+        isLogin: false
+    };
 
     render() {
-        if (this.state.animationFinish) {
-            return (<AlbumList/>);
-        }
-        else {
+        if (!this.state.animationFinish) {
             return (
                 <Splash OnFinish={() => {
                     this.setState({animationFinish: true});
                 }
                 }/>);
         }
+        if (this.state.isLogin) {
+            return (<AlbumList/>);
+        }
+        else
+            return (<LoginView OnLogin={() => {
+                this.setState({isLogin: true});
+            }
+            }
+            />);
 
     }
 }
