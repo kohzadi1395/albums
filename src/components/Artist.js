@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {Text, SectionList, View} from 'react-native';
-
 import axios from "axios";
-import AlbumDetail from "./AlbumDetail";
 
 class Artist extends Component {
 
@@ -120,4 +118,4 @@ const styles = {
     }
 };
 
-export default Artist;
+export {Artist};

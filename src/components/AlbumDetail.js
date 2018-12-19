@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View, Image, Linking} from 'react-native';
-import Card from "./Card";
-import CardSection from "./CardSection";
-import Button from "./Button";
+import {Card,CardSection,Button} from "./src";
+
 
 
 class AlbumDetail extends Component {
@@ -40,7 +39,7 @@ class AlbumDetail extends Component {
                     </View>
                 </CardSection>
                 <CardSection>
-                    <View  style={imageContainerStyle}>
+                    <View style={imageContainerStyle}>
                         <Image source={{uri: image}}
                                style={imageStyle}/>
                     </View>
@@ -82,7 +81,7 @@ const styles = {
         width: 300,
         height: 300
     },
-    imageContainerStyle:{
+    imageContainerStyle: {
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 10,
@@ -90,4 +89,4 @@ const styles = {
     }
 };
 
-export default AlbumDetail;
+export {AlbumDetail};

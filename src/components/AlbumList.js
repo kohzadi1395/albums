@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {ScrollView} from 'react-native';
 import axios from 'axios';
-import AlbumDetail from "./AlbumDetail";
+import {AlbumDetail} from "./src";
 
 class AlbumList extends Component {
 
@@ -41,4 +41,4 @@ class AlbumList extends Component {
     }
 }
 
-export default AlbumList;
+export {AlbumList};

@@ -8,10 +8,8 @@
 
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
-import Header from "./src/components/header";
-import AlbumList from "./src/components/AlbumList";
-import Artist from "./src/components/Artist";
-import Splash from "./src/components/Splash";
+import {AlbumList,Splash} from "./src";
+
 
 
 type Props = {};

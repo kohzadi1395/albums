@@ -25,4 +25,4 @@ const styles = {
         fontSize: 20
     }
 };
-export default Header;
+export {Header};

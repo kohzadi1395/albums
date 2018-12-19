@@ -119,4 +119,4 @@ const styles = StyleSheet.create({
 Splash.propTypes = {
     OnFinish: PropTypes.func.isRequired
 };
-export default Splash;
+export  {Splash};

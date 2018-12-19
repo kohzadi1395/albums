@@ -4,13 +4,12 @@ import {
     Text,
     View,
     TextInput,
-    Button,
     TouchableHighlight,
     Image,
     Alert
 } from 'react-native';
 
-export default class LoginView extends Component {
+export class LoginView extends Component {
 
     state = {
         email   : '',

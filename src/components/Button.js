@@ -1,6 +1,5 @@
 import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
-import propTypes from "prop-types";
 
 
 const Button = ({OnPress,children}) => {
@@ -38,4 +37,4 @@ const styles = {
     }
 };
 
-export default Button;
+export {Button};
