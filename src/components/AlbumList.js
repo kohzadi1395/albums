@@ -15,19 +15,21 @@ class AlbumList extends Component {
 
     renderAlbums() {
 
-        return this.state.albums.sort(
-            function (a, b) {
-                let x = a.artist.toLowerCase();
-                let y = b.artist.toLowerCase();
-                if (x < y) {
-                    return -1;
-                }
-                if (x > y) {
-                    return 1;
-                }
-                return 0;
-            }
-        ).map(album => <AlbumDetail album={album}> </AlbumDetail>)
+        return this.state.albums
+        //     .sort(
+        //     function (a, b) {
+        //         let x = a.artist.toLowerCase();
+        //         let y = b.artist.toLowerCase();
+        //         if (x < y) {
+        //             return -1;
+        //         }
+        //         if (x > y) {
+        //             return 1;
+        //         }
+        //         return 0;
+        //     }
+        // )
+            .map((album,index) => <AlbumDetail key={index} album={album}> </AlbumDetail>)
     }
 
     render() {

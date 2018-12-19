@@ -1,21 +1,43 @@
 import React, {Component} from 'react';
-import {Text, View, Image, Linking} from 'react-native';
-import Card from "./Card";
-import CardSection from "./CardSection";
-import Button from "./Button";
+import {Text, SectionList, View} from 'react-native';
 
+import axios from "axios";
+import AlbumDetail from "./AlbumDetail";
 
 class Artist extends Component {
 
-    render() {
-        const {
-            title,
-            artist,
-            thumbnail_image,
-            image,
-            url
-        } = this.props.album;
+    state = {
+        albums: [],
+        groupByData: []
+    };
 
+    componentWillMount() {
+        // axios.get('http://rallycoding.herokuapp.com/api/music_albums')
+
+        axios.get('http://www.mocky.io/v2/5c10bfbd2e0000171055b67b')
+            .then(response => this.setState({albums: response.data}));
+
+        let groupByData = this.groupBy(this.state.albums, 'artist');
+
+        this.setState({groupByData: groupByData});
+
+        console.log(this.state.groupByData);
+    }
+
+    groupBy(objectArray, property) {
+        return objectArray.reduce(function (acc, obj) {
+            let key = obj[property];
+            if (!acc[key]) {
+                acc[key] = [];
+            }
+            acc[key].push(obj);
+            return acc;
+        }, {});
+    }
+tmp(){
+    this.state.albums.map((album,index) => <Text key={index}>{album.artist} </Text>) ;
+}
+    render() {
         const abc = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         const color = {
             0: '#794044',
@@ -54,42 +76,12 @@ class Artist extends Component {
             X: '#000080'
         };
 
-        const {
-            thumbnailStyle,
-            headerContentStyle,
-            thumbnailContainerStyle,
-            headerTextStyle,
-            imageStyle,
-            mainContentStyle,
-            imageContainerStyle
-        } = styles;
 
         return (
-            <Card>
-                <CardSection>
-                    <View style={mainContentStyle}>
-                        <View style={thumbnailContainerStyle}>
-                            <Image source={{uri: thumbnail_image}} style={thumbnailStyle}/>
-                        </View>
-                        <View style={headerContentStyle}>
-                            <Text style={headerTextStyle}>{title}</Text>
-                            <Text>{artist}</Text>
-                        </View>
-                    </View>
-                </CardSection>
-                <CardSection>
-                    <View style={imageContainerStyle}>
-                        <Image source={{uri: image}}
-                               style={imageStyle}/>
-                    </View>
 
-                </CardSection>
-                <CardSection>
-                    <Button OnPress={() => Linking.openURL(url)}>
-                        Buy Now
-                    </Button>
-                </CardSection>
-            </Card>
+            <View>
+                {this.tmp()}
+            </View>
         );
     }
 }

@@ -10,17 +10,26 @@ import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
 import Header from "./src/components/header";
 import AlbumList from "./src/components/AlbumList";
+import Artist from "./src/components/Artist";
+import Splash from "./src/components/Splash";
 
 
 type Props = {};
 export default class App extends Component<Props> {
+    state = {animationFinish: false};
+
     render() {
-        return (
-            <View Style={{flex: 1}}>
-                <Header/>
-                <AlbumList/>
-            </View>
-        );
+        if (this.state.animationFinish) {
+            return (<AlbumList/>);
+        }
+        else {
+            return (
+                <Splash OnFinish={() => {
+                    this.setState({animationFinish: true});
+                }
+                }/>);
+        }
+
     }
 }
 
