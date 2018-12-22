@@ -15,25 +15,20 @@ export class LoginView extends Component {
     state = {
         email: '',
         password: '',
-    }
+    };
 
     constructor(props) {
         super(props);
 
     }
 
-    onClickListener = (viewId) => {
-        Alert.alert("Alert", "Button pressed " + viewId);
+    onClickListener() {
+        Alert.alert("Alert", "Button pressed ");
     }
 
-    Login() {
-        if (true) {
-            {this.props.OnLogin};
-        }
-        else
-        {
-
-        }
+    btnLoginPress() {
+        if (true)
+            this.props.OnLogin();
     }
 
     render() {
@@ -59,7 +54,7 @@ export class LoginView extends Component {
                                onChangeText={(password) => this.setState({password})}/>
                 </View>
 
-                <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={this.Login}>
+                <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={this.btnLoginPress}>
                     <Text style={styles.loginText}>Login</Text>
                 </TouchableHighlight>
 

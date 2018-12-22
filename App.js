@@ -18,6 +18,10 @@ export default class App extends Component<Props> {
         isLogin: false
     };
 
+    Login() {
+        this.setState({isLogin: true});
+    }
+
     render() {
         if (!this.state.animationFinish) {
             return (
@@ -30,11 +34,8 @@ export default class App extends Component<Props> {
             return (<AlbumList/>);
         }
         else
-            return (<LoginView OnLogin={() => {
-                this.setState({isLogin: true});
-            }
-            }
-            />);
+            return (<LoginView OnLogin={this.Login.bind(this)}/>
+            );
 
     }
 }

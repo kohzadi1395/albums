@@ -1,3 +1,5 @@
+import ProgressiveImage from "./components/ProgressiveImage";
+
 export * from './components/Splash'
 export * from './components/Artist'
 export * from './components/Button'
@@ -7,4 +9,5 @@ export * from './components/AlbumList'
 export * from './components/CardSection'
 export * from './components/LoginView'
 export * from './components/header'
+export * from './components/ProgressiveImage'
 

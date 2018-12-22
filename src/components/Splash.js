@@ -28,11 +28,7 @@ class Splash extends Component {
         ;
     }
 
-    callback() {
-        Alert.alert('Finish');
-        this.props.OnFinish;
 
-    }
 
     render() {
         const truckStyle = {
