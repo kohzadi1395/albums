@@ -8,11 +8,14 @@
 
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {AlbumList, LoginView, Splash} from "./src";
-
+import {AlbumList, LoginView, Splash, HomeScreen} from "./src";
+import {Navigation} from 'react-native-navigation';
 
 type Props = {};
+
 export default class App extends Component<Props> {
+
+
     state = {
         animationFinish: false,
         isLogin: false
@@ -31,12 +34,11 @@ export default class App extends Component<Props> {
                 }/>);
         }
         if (this.state.isLogin) {
-            return (<AlbumList/>);
+            return (<HomeScreen/>);
         }
         else
             return (<LoginView OnLogin={this.Login.bind(this)}/>
             );
-
     }
 }
 

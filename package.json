@@ -10,10 +10,13 @@
     "axios": "^0.18.0",
     "graphicsmagick": "0.0.1",
     "imageMagick": "^0.1.2",
+    "native-base": "^2.9.3",
     "prop-types": "latest",
     "react": "16.6.1",
     "react-native": "0.57.7",
-    "react-native-linear-gradient": "^2.5.3"
+    "react-native-linear-gradient": "^2.5.3",
+    "react-native-navigation": "^2.2.5",
+    "react-navigation": "^3.0.9"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

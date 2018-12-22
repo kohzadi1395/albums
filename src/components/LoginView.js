@@ -54,7 +54,7 @@ export class LoginView extends Component {
                                onChangeText={(password) => this.setState({password})}/>
                 </View>
 
-                <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={this.btnLoginPress}>
+                <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={this.btnLoginPress.bind(this)}>
                     <Text style={styles.loginText}>Login</Text>
                 </TouchableHighlight>
 

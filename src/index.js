@@ -8,6 +8,7 @@ export * from './components/Card'
 export * from './components/AlbumList'
 export * from './components/CardSection'
 export * from './components/LoginView'
-export * from './components/header'
+export * from './components/Header'
 export * from './components/ProgressiveImage'
+export * from './components/HomeScreen'
 
