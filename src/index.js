@@ -11,4 +11,5 @@ export * from './components/LoginView'
 export * from './components/Header'
 export * from './components/ProgressiveImage'
 export * from './components/HomeScreen'
+export * from './components/SideBar'
 

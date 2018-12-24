@@ -9,12 +9,14 @@ import {
     Alert
 } from 'react-native';
 import PropTypes from "prop-types";
+import axios from "axios";
 
 export class LoginView extends Component {
 
     state = {
         email: '',
         password: '',
+        user: []
     };
 
     constructor(props) {
@@ -27,8 +29,26 @@ export class LoginView extends Component {
     }
 
     btnLoginPress() {
-        if (true)
-            this.props.OnLogin();
+        axios.get('http://www.mocky.io/v2/5c1f46703000001200602a73', {
+            params: {
+                email: this.setState.email,
+                password: this.setState.password
+            }
+        })
+            .then(response => {
+                this.setState({user: response.data});
+                if (this.state.user && this.state.user.length > 0) {
+                    {
+                        this.props.OnLogin(this.state.user);
+                    }
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+                Alert.alert('error', error);
+            });
+
+
     }
 
     render() {
@@ -36,7 +56,7 @@ export class LoginView extends Component {
             <View style={styles.container}>
                 <View style={styles.inputContainer}>
                     <Image style={styles.inputIcon}
-                           source={{uri: 'https://png.icons8.com/message/ultraviolet/50/3498db'}}/>
+                           source={require("../assets/message.png")}/>
                     <TextInput style={styles.inputs}
                                placeholder="Email"
                                keyboardType="email-address"
@@ -46,7 +66,7 @@ export class LoginView extends Component {
 
                 <View style={styles.inputContainer}>
                     <Image style={styles.inputIcon}
-                           source={{uri: 'https://png.icons8.com/key-2/ultraviolet/50/3498db'}}/>
+                           source={require("../assets/key.png")}/>
                     <TextInput style={styles.inputs}
                                placeholder="Password"
                                secureTextEntry={true}
@@ -54,7 +74,8 @@ export class LoginView extends Component {
                                onChangeText={(password) => this.setState({password})}/>
                 </View>
 
-                <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={this.btnLoginPress.bind(this)}>
+                <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]}
+                                    onPress={this.btnLoginPress.bind(this)}>
                     <Text style={styles.loginText}>Login</Text>
                 </TouchableHighlight>
 

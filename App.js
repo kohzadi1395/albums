@@ -8,8 +8,8 @@
 
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {AlbumList, LoginView, Splash, HomeScreen} from "./src";
-import {Navigation} from 'react-native-navigation';
+import {LoginView, Splash, HomeScreen, SideBar} from "./src";
+
 
 type Props = {};
 
@@ -18,27 +18,32 @@ export default class App extends Component<Props> {
 
     state = {
         animationFinish: false,
-        isLogin: false
+        isLogin: false,
+        user: []
     };
 
-    Login() {
-        this.setState({isLogin: true});
+    Login(user) {
+        this.setState({
+            isLogin: true,
+            user: user
+        });
     }
 
     render() {
-        if (!this.state.animationFinish) {
-            return (
-                <Splash OnFinish={() => {
-                    this.setState({animationFinish: true});
-                }
-                }/>);
-        }
-        if (this.state.isLogin) {
-            return (<HomeScreen/>);
-        }
-        else
-            return (<LoginView OnLogin={this.Login.bind(this)}/>
-            );
+            if (!this.state.animationFinish) {
+                return (
+                    <Splash OnFinish={() => {
+                        this.setState({animationFinish: true});
+                    }
+                    }/>);
+            }
+            if (this.state.isLogin) {
+                return (<HomeScreen/>);
+            }
+            else
+                return (<LoginView OnLogin={this.Login.bind(this)}/>
+                );
+        // return (<HomeScreen/>);
     }
 }
 

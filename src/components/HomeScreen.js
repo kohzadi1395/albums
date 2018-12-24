@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Sidebar from "./SideBar";
+import {View, Text} from 'react-native';
 import {Drawer} from 'native-base';
-import {AlbumList} from "./AlbumList";
+import {AlbumList, SideBar} from "../../src";
 
 export class HomeScreen extends Component {
 
@@ -18,7 +18,7 @@ export class HomeScreen extends Component {
                 ref={(ref) => {
                     this.drawer = ref;
                 }}
-                content={<Sidebar/>}
+                content={<SideBar/>}
                 panOpenMask={0.80}
                 onClose={this.closeDrawer}
                 onOpen={this.openDrawer}
