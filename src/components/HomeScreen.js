@@ -24,7 +24,7 @@ export class HomeScreen extends Component {
                 onOpen={this.openDrawer}
                 captureGestures="open"
                 side="left">
-                <AlbumList/>
+                <AlbumList OpenDrawer={this.openDrawer.bind(this)}/>
             </Drawer>
         );
     }

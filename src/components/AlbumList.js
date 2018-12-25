@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {ScrollView,View} from 'react-native';
 import axios from 'axios';
 import {AlbumDetail, Header} from "../../src";
+import PropTypes from "prop-types";
 
 class AlbumList extends Component {
 
@@ -35,7 +36,7 @@ class AlbumList extends Component {
     render() {
         return (
             <View>
-                <Header/>
+                <Header OnMenu={this.props.OpenDrawer.bind(this)}/>
                 <ScrollView>
                     {this.renderAlbums()}
                 </ScrollView>
@@ -43,5 +44,8 @@ class AlbumList extends Component {
         );
     }
 }
-
+AlbumList.propTypes = {
+    OnSearch: PropTypes.func,
+    OpenDrawer: PropTypes.func
+};
 export {AlbumList};

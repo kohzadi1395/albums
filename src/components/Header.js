@@ -65,6 +65,15 @@ const styles = {
 };
 Header.propTypes = {
     OnSearch: PropTypes.func,
-    OnMenu: PropTypes.func
+    OnMenu: PropTypes.func,
+    ShowMenu:PropTypes.boolean,
+    ShowSearch:PropTypes.boolean,
+    ShowBack:PropTypes.boolean
+};
+
+Header.defaultProps  = {
+    ShowMenu:true,
+    ShowSearch:true,
+    ShowBack:false
 };
 export {Header};
