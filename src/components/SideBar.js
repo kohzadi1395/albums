@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, TouchableHighlight} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -47,7 +47,9 @@ export class SideBar extends Component {
             userImageStyle,
             headerContainer,
             inputIcon,
-            headerNameUser
+            headerNameUser,
+            menuItemTextStyle,
+            menuItemStyle
         } = styles;
 
 
@@ -56,40 +58,49 @@ export class SideBar extends Component {
                 <View style={headerContainer}>
                     <Image style={userImageStyle}
                            source={this.state.avatar}/>
-                    <TouchableHighlight onPress={this.btnChangeImage.bind(this)}>
+                    <TouchableOpacity onPress={this.btnChangeImage.bind(this)}>
                         <Image style={inputIcon}
                                source={require("../assets/camera.png")}/>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
 
                     <Text style={headerNameUser}>Kohzadi Hossein</Text>
                     <Text style={headerNameUser}>Kohzadi_hossein@yahoo.com</Text>
                 </View>
-
-                <View>
-                    <Image style={inputIcon}
-                           source={{uri: 'https://png.icons8.com/message/ultraviolet/50/3498db'}}/>
-                    <Text style={styles.inputs}>Test</Text>
-                </View>
-                <View>
-                    <Image style={inputIcon}
-                           source={{uri: 'https://png.icons8.com/message/ultraviolet/50/3498db'}}/>
-                    <Text style={styles.inputs}>1111</Text>
-                </View>
-                <View>
-                    <Image style={inputIcon}
-                           source={{uri: 'https://png.icons8.com/message/ultraviolet/50/3498db'}}/>
-                    <Text style={styles.inputs}>Test</Text>
-                </View>
-                <View>
-                    <Image style={inputIcon}
-                           source={{uri: 'https://png.icons8.com/message/ultraviolet/50/3498db'}}/>
-                    <Text style={styles.inputs}>Test</Text>
-                </View>
-                <View>
-                    <Image style={inputIcon}
-                           source={{uri: 'https://png.icons8.com/message/ultraviolet/50/3498db'}}/>
-                    <Text style={styles.inputs}>Test</Text>
-                </View>
+                <TouchableOpacity onPress={this.btnChangeImage.bind(this)}>
+                    <View style={menuItemStyle}>
+                        <Image style={inputIcon}
+                               source={require("../assets/group.png")}/>
+                        <Text style={menuItemTextStyle}>Singers</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this.btnChangeImage.bind(this)}>
+                    <View style={menuItemStyle}>
+                        <Image style={inputIcon}
+                               source={require("../assets/note.png")}/>
+                        <Text style={menuItemTextStyle}>All Albums</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this.btnChangeImage.bind(this)}>
+                    <View style={menuItemStyle}>
+                        <Image style={inputIcon}
+                               source={require("../assets/favorite.png")}/>
+                        <Text style={menuItemTextStyle}>Favorite</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this.btnChangeImage.bind(this)}>
+                    <View style={menuItemStyle}>
+                        <Image style={inputIcon}
+                               source={require("../assets/settings.png")}/>
+                        <Text style={menuItemTextStyle}>Setting</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this.btnChangeImage.bind(this)}>
+                    <View style={menuItemStyle}>
+                        <Image style={inputIcon}
+                               source={require("../assets/logout.png")}/>
+                        <Text style={menuItemTextStyle}>Logout</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -106,13 +117,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 200
     },
-    inputs: {
+    menuItemStyle: {
         height: 45,
         marginLeft: 16,
+        alignItems: 'center',
+        flexDirection: 'row',
+
+    },
+    menuItemTextStyle: {
         borderBottomColor: '#FFFFFF',
         color: '#ffffff',
-        backgroundColor: '#ffffff',
-        flex: 1,
+        fontWeight: 'bold',
+        alignItems: 'center',
+        marginLeft: 16,
+        fontSize: 16
     },
     userImageStyle: {
         backgroundColor: "#474747",
@@ -126,8 +144,7 @@ const styles = StyleSheet.create({
     inputIcon: {
         width: 30,
         height: 30,
-        justifyContent: 'center',
-        alignSelf: 'center'
+
     },
     SideBarStyle: {
         backgroundColor: '#ffffff'

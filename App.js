@@ -30,20 +30,20 @@ export default class App extends Component<Props> {
     }
 
     render() {
-            // if (!this.state.animationFinish) {
-            //     return (
-            //         <Splash OnFinish={() => {
-            //             this.setState({animationFinish: true});
-            //         }
-            //         }/>);
-            // }
-            // if (this.state.isLogin) {
-            //     return (<HomeScreen/>);
-            // }
-            // else
-            //     return (<LoginView OnLogin={this.Login.bind(this)}/>
-            //     );
-          return (<HomeScreen/>);
+            if (!this.state.animationFinish) {
+                return (
+                    <Splash OnFinish={() => {
+                        this.setState({animationFinish: true});
+                    }
+                    }/>);
+            }
+            if (this.state.isLogin) {
+                return (<HomeScreen/>);
+            }
+            else
+                return (<LoginView OnLogin={this.Login.bind(this)}/>
+                );
+          // return (<HomeScreen/>);
     }
 }
 
