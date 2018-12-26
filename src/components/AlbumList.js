@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {ScrollView,View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import axios from 'axios';
-import {AlbumDetail, Header} from "../../src";
+import {AlbumDetail, Header, Spinner} from "../../src";
 import PropTypes from "prop-types";
 
 class AlbumList extends Component {
 
-    state = {albums: []};
+    state = {albums: null};
 
     componentWillMount() {
         // axios.get('http://rallycoding.herokuapp.com/api/music_albums')
@@ -31,19 +31,25 @@ class AlbumList extends Component {
         //     }
         // )
             .map((album, index) => <AlbumDetail key={index} album={album}> </AlbumDetail>)
+
     }
 
     render() {
-        return (
-            <View>
-                <Header OnMenu={this.props.OpenDrawer.bind(this)}/>
-                <ScrollView>
-                    {this.renderAlbums()}
-                </ScrollView>
-            </View>
-        );
-    }
+        if (!this.state.albums) {
+            return (<Spinner size='large' />);
+        }
+        else {
+            return (
+                <View>
+                    <Header OnMenu={this.props.OpenDrawer.bind(this)}/>
+                    <ScrollView>
+                        {this.renderAlbums()}
+                    </ScrollView>
+                </View>);
+        }
+    };
 }
+
 AlbumList.propTypes = {
     OnSearch: PropTypes.func,
     OpenDrawer: PropTypes.func
