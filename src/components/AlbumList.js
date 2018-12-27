@@ -10,7 +10,8 @@ class AlbumList extends Component {
 
     componentWillMount() {
         // axios.get('http://rallycoding.herokuapp.com/api/music_albums')
-        axios.get('http://www.mocky.io/v2/5c10bfbd2e0000171055b67b')
+        // axios.get('http://www.mocky.io/v2/5c10bfbd2e0000171055b67b')
+        axios.get('http://www.mocky.io/v2/5c24691a30000086007a5f9a')
             .then(response => this.setState({albums: response.data}));
     }
 
@@ -36,7 +37,7 @@ class AlbumList extends Component {
 
     render() {
         if (!this.state.albums) {
-            return (<Spinner size='large' />);
+            return (<Spinner size='large'/>);
         }
         else {
             return (
