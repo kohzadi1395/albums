@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Text, View, Image, Linking, Animated, TouchableOpacity} from 'react-native';
 import {Card, CardSection, Button, DoubleTap} from "../../src";
+import { NumFormatter } from '../Utilities/UtilityStringFunc'
+import PropTypes from 'prop-types';
 
 
 class AlbumDetail extends Component {
@@ -25,7 +27,7 @@ class AlbumDetail extends Component {
 
             return {liked: newLiked};
         });
-    }
+    };
 
     renderOverlay = () => {
         const imageStyles = [
@@ -51,9 +53,10 @@ class AlbumDetail extends Component {
                 />
             </View>
         );
-    }
+    };
 
     lastTap = null;
+
     handleDoubleTap = () => {
         const now = Date.now();
         const DOUBLE_PRESS_DELAY = 300;
@@ -62,28 +65,10 @@ class AlbumDetail extends Component {
         } else {
             this.lastTap = now;
         }
-    }
+    };
 
 
-    NumFormatter(num) {
-        var si = [
-            {value: 1, symbol: ""},
-            {value: 1E3, symbol: "k"},
-            {value: 1E6, symbol: "M"},
-            {value: 1E9, symbol: "G"},
-            {value: 1E12, symbol: "T"},
-            {value: 1E15, symbol: "P"},
-            {value: 1E18, symbol: "E"}
-        ];
-        var rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
-        var i;
-        for (i = si.length - 1; i > 0; i--) {
-            if (num >= si[i].value) {
-                break;
-            }
-        }
-        return (num / si[i].value).toFixed(1).replace(rx, "$1") + si[i].symbol;
-    }
+
 
 
     render() {
@@ -129,7 +114,7 @@ class AlbumDetail extends Component {
                                     resizeMode="cover"
                                 />
                             </TouchableOpacity>
-                            <Text>{this.NumFormatter(liked)}</Text>
+                            <Text>{NumFormatter(liked)}</Text>
                         </View>
                     </View>
                 </CardSection>

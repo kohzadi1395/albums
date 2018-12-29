@@ -103,20 +103,26 @@ class Artist extends Component {
                                  sections={this.state.artists}
                                  renderSectionHeader={
                                      ({section}) =>
-                                         <View >
-                                             <LinearGradient style={{
-                                                 borderTopRightRadius: 25,
-                                                 borderTopLeftRadius: 25,
-                                                 borderWidth: 1
-                                             }}
-                                                             colors={[
-                                                                 "#1e3557",
-                                                                 "#1e3557",
-                                                             ]}
+                                         <View>
+                                             <LinearGradient
+                                                 //     style={{
+                                                 //     borderTopRightRadius: 25,
+                                                 //     borderTopLeftRadius: 25,
+                                                 //     borderWidth: 1,
+                                                 // }}
+                                                 colors={[
+                                                     "#1e3557",
+                                                     "#1e3557",
+                                                 ]}
                                                  // start={{x: 0, y: 0}} end={{x: 1, y: 0}}
                                              >
                                                  <View style={AvatarStyle}>
-                                                     <Text>
+                                                     <Text style={
+                                                         {
+                                                             color: '#fff',
+                                                             fontSize: 20,
+                                                             fontWeight: 'bold'
+                                                         }}>
                                                          {section.FirstCharFirstName}
                                                      </Text>
                                                  </View>
@@ -153,7 +159,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     SectionListItemS: {
-       flex:1, fontSize: 16,
+        flex: 1, fontSize: 16,
         padding: 6,
         color: '#000',
         justifyContent: 'center',
@@ -163,13 +169,13 @@ const styles = StyleSheet.create({
     AvatarStyle: {
         width: 50,
         height: 50,
-        backgroundColor: '#fff',
-        borderColor: '#000',
-        borderWidth: 1,
-        borderRadius: 25,
+        backgroundColor: '#1E3557',
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        color: '#fff',
+        fontSize: 15,
+
 
     },
     AvatarTextStyle: {
@@ -187,7 +193,7 @@ const styles = StyleSheet.create({
         width: 70,
         height: 70,
         borderRadius: 35,
-        margin:5,
+        margin: 5,
 
     },
     SectionListItemContainer: {
@@ -197,6 +203,7 @@ const styles = StyleSheet.create({
         borderLeftWidth: 1,
         borderRightWidth: 1,
         backgroundColor: '#F5F5F5',
+        borderColor: '#ddd'
     },
 });
 export {Artist};

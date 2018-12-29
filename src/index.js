@@ -14,4 +14,6 @@ export * from './components/HomeScreen'
 export * from './components/SideBar'
 export * from './components/Spinner'
 export * from './components/DoubleTap'
+export * from './components/ArtistDetail'
+export * from './components/ArtistList'
 

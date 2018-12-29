@@ -1,7 +1,7 @@
 import React from 'react';
 import {TouchableWithoutFeedback} from 'react-native';
 
-export class DoubleTap extends React.Component {
+class  DoubleTap extends React.Component {
     static defaultProps = {
         delay: 300,
         onDoubleTap: () => null,
@@ -27,3 +27,4 @@ export class DoubleTap extends React.Component {
         );
     }
 }
+export {DoubleTap};
