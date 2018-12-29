@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Drawer} from 'native-base';
-import {AlbumList, Artist, SideBar} from "../../src";
+import {AlbumList, Artist, Header, SideBar} from "../../src";
+import {View} from "react-native";
 
 export class HomeScreen extends Component {
 
@@ -26,6 +27,7 @@ export class HomeScreen extends Component {
                 onOpen={this.openDrawer}
                 captureGestures="open"
                 side="left">
+                <Header OnMenu={this.openDrawer.bind(this)}/>
                 {
                     this.ShowSelectedPage()
                 }
@@ -45,6 +47,11 @@ export class HomeScreen extends Component {
         {
             this.closeDrawer();
             return( <Artist/>);
+        }
+        else if (this.state.currentPage === 'albums')
+        {
+            this.closeDrawer();
+            return( <AlbumList/>);
         }
     }
 

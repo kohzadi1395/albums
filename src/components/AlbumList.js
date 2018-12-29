@@ -42,7 +42,6 @@ class AlbumList extends Component {
         else {
             return (
                 <View>
-                    <Header OnMenu={this.props.OpenDrawer.bind(this)}/>
                     <ScrollView>
                         {this.renderAlbums()}
                     </ScrollView>
@@ -51,8 +50,4 @@ class AlbumList extends Component {
     };
 }
 
-AlbumList.propTypes = {
-    OnSearch: PropTypes.func,
-    OpenDrawer: PropTypes.func
-};
 export {AlbumList};
