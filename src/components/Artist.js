@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, SectionList, View, Alert, StyleSheet} from 'react-native';
+import {Text, SectionList, View, Alert, StyleSheet, Image, TouchableWithoutFeedback} from 'react-native';
 import axios from "axios";
 import {Spinner} from "./Spinner";
 import LinearGradient from "react-native-linear-gradient";
@@ -78,38 +78,61 @@ class Artist extends Component {
     */
 
     GetSectionListItem(item) {
-        Alert.alert(item)
+        Alert.alert(item.artist);
     }
 
     render() {
+
+        const {
+            thumbnailStyle,
+            container,
+            AvatarStyle,
+            SectionListItemS,
+            SectionListItemContainer
+        } = styles;
+
         if (!this.state.artists)
             return (<Spinner/>)
         else
             return (
-                <View style={styles.container}>
-                    <SectionList
-                        sections={this.state.artists}
-                        renderSectionHeader={({section}) =>
-                            <LinearGradient
-                                colors={[
-                                    "#1e3557",
-                                    "#ffffff",
-                                ]}
-                                start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-                            >
+                <View style={container}>
+                    <SectionList style={{
+                        marginLeft: 5,
+                        marginRight: 5,
+                    }}
+                                 sections={this.state.artists}
+                                 renderSectionHeader={
+                                     ({section}) =>
+                                         <View >
+                                             <LinearGradient style={{
+                                                 borderTopRightRadius: 25,
+                                                 borderTopLeftRadius: 25,
+                                                 borderWidth: 1
+                                             }}
+                                                             colors={[
+                                                                 "#1e3557",
+                                                                 "#1e3557",
+                                                             ]}
+                                                 // start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+                                             >
+                                                 <View style={AvatarStyle}>
+                                                     <Text>
+                                                         {section.FirstCharFirstName}
+                                                     </Text>
+                                                 </View>
+                                             </LinearGradient>
+                                         </View>
+                                 }
+                                 renderItem={({item}) =>
+                                     <View style={SectionListItemContainer}>
+                                         <Image source={{uri: item.thumbnail_image}} style={thumbnailStyle}/>
+                                         <Text style={SectionListItemS}
+                                               onPress={this.GetSectionListItem.bind(this, item)}> {item.artist} </Text>
 
+                                     </View>
+                                 }
 
-                                <View style={styles.AvatarStyle}>
-                                    <Text>
-                                        {section.FirstCharFirstName}
-                                    </Text>
-                                </View>
-                            </LinearGradient>
-                        }
-                        renderItem={({item}) =>
-                            <Text style={styles.SectionListItemS}
-                                  onPress={this.GetSectionListItem.bind(this, item)}> {item.artist} </Text>}
-                        keyExtractor={(item, index) => index}
+                                 keyExtractor={(item, index) => index}
                     />
                 </View>
             );
@@ -120,7 +143,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: "center",
-        backgroundColor: "#e5e5e5"
+        backgroundColor: "#ffffff"
     },
     SectionHeader: {
         backgroundColor: '#f67e23',
@@ -130,10 +153,12 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     SectionListItemS: {
-        fontSize: 16,
+       flex:1, fontSize: 16,
         padding: 6,
         color: '#000',
-        backgroundColor: '#F5F5F5'
+        justifyContent: 'center',
+        alignSelf: 'center',
+
     },
     AvatarStyle: {
         width: 50,
@@ -153,8 +178,25 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderColor: '#000',
         borderWidth: 1,
-        borderRadius: 25
+        borderRadius: 25,
+        marginLeft: 15,
+        justifyContent: 'center',
+        alignItems: 'center'
 
-    }
+    }, thumbnailStyle: {
+        width: 70,
+        height: 70,
+        borderRadius: 35,
+        margin:5,
+
+    },
+    SectionListItemContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        borderBottomWidth: 1,
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        backgroundColor: '#F5F5F5',
+    },
 });
 export {Artist};
