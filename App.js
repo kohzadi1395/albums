@@ -44,8 +44,8 @@ export default class App extends Component<Props> {
             //     return (<LoginView OnLogin={this.Login.bind(this)}/>
             //     );
 
-        // return (<HomeScreen/>);
-        return (<Artist/>);
+         return (<HomeScreen/>);
+       // return (<Artist/>);
     }
 }
 

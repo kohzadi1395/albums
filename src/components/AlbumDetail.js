@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Text, View, Image, Linking, TouchableWithoutFeedback} from 'react-native';
-import {Card, CardSection, Button} from "../../src";
+import {Text, View, Image, Linking, Animated, TouchableOpacity} from 'react-native';
+import {Card, CardSection, Button, DoubleTap} from "../../src";
 
 
 class AlbumDetail extends Component {
@@ -10,8 +10,49 @@ class AlbumDetail extends Component {
         liked: false
 
     };
+    animatedValue = new Animated.Value(0);
 
-    toggleLike = () => this.setState(state => ({liked: !state.liked}));
+    toggleLike = () => {
+        this.setState((state) => {
+            const newLiked = !state.liked;
+
+            if (newLiked) {
+                Animated.sequence([
+                    Animated.spring(this.animatedValue, {toValue: 1}),
+                    Animated.spring(this.animatedValue, {toValue: 0}),
+                ]).start();
+            }
+
+            return {liked: newLiked};
+        });
+    }
+
+    renderOverlay = () => {
+        const imageStyles = [
+            styles.overlayHeart,
+            {
+                opacity: this.animatedValue,
+                transform: [
+                    {
+                        scale: this.animatedValue.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [0.7, 1.5],
+                        }),
+                    },
+                ],
+            },
+        ];
+
+        return (
+            <View style={styles.overlay}>
+                <Animated.Image
+                    source={require('../assets/heart.png')}
+                    style={imageStyles}
+                />
+            </View>
+        );
+    }
+
     lastTap = null;
     handleDoubleTap = () => {
         const now = Date.now();
@@ -23,15 +64,16 @@ class AlbumDetail extends Component {
         }
     }
 
+
     NumFormatter(num) {
         var si = [
-            { value: 1, symbol: "" },
-            { value: 1E3, symbol: "k" },
-            { value: 1E6, symbol: "M" },
-            { value: 1E9, symbol: "G" },
-            { value: 1E12, symbol: "T" },
-            { value: 1E15, symbol: "P" },
-            { value: 1E18, symbol: "E" }
+            {value: 1, symbol: ""},
+            {value: 1E3, symbol: "k"},
+            {value: 1E6, symbol: "M"},
+            {value: 1E9, symbol: "G"},
+            {value: 1E12, symbol: "T"},
+            {value: 1E15, symbol: "P"},
+            {value: 1E18, symbol: "E"}
         ];
         var rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
         var i;
@@ -70,7 +112,7 @@ class AlbumDetail extends Component {
             <Card>
                 <CardSection>
                     <View style={mainContentStyle}>
-                        <View style={{flexDirection:'row'}}>
+                        <View style={{flexDirection: 'row'}}>
                             <View style={thumbnailContainerStyle}>
                                 <Image source={{uri: thumbnail_image}} style={thumbnailStyle}/>
                             </View>
@@ -80,21 +122,26 @@ class AlbumDetail extends Component {
                             </View>
                         </View>
                         <View style={likeContainer}>
-                            <Image
-                                source={this.state.liked ? require('../assets/heart.png') : require('../assets/heart-outline.png')}
-                                style={heartIcon}
-                                resizeMode="cover"
-                            />
+                            <TouchableOpacity onPress={this.toggleLike}>
+                                <Image
+                                    source={this.state.liked ? require('../assets/heart.png') : require('../assets/heart-outline.png')}
+                                    style={heartIcon}
+                                    resizeMode="cover"
+                                />
+                            </TouchableOpacity>
                             <Text>{this.NumFormatter(liked)}</Text>
                         </View>
                     </View>
                 </CardSection>
                 <CardSection>
                     <View style={imageContainerStyle}>
-                        <TouchableWithoutFeedback onPress={this.handleDoubleTap}>
-                            <Image source={{uri: image}}
-                                   style={imageStyle}/>
-                        </TouchableWithoutFeedback>
+                        <DoubleTap onDoubleTap={this.toggleLike}>
+                            <View>
+                                <Image source={{uri: image}}
+                                       style={imageStyle}/>
+                                {this.renderOverlay()}
+                            </View>
+                        </DoubleTap>
                     </View>
 
                 </CardSection>
@@ -147,13 +194,23 @@ const styles = {
         height: 20,
     },
     likeContainer: {
-        marginRight:15,
+        marginRight: 15,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-
-
-    }
+    },
+    overlay: {
+        position: 'absolute',
+        alignItems: 'center',
+        justifyContent: 'center',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+    },
+    overlayHeart: {
+        tintColor: '#fff',
+    },
 };
 
 export {AlbumDetail};
