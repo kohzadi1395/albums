@@ -53,7 +53,7 @@ class Splash extends Component {
             >
                 <Animated.View style={[styles.ring, truckStyle]}>
                     <Animated.Image
-                        source={require("../../img/Track.png")}
+                        source={require("../assets/Track.png")}
                         style={[
                             {
                                 resizeMode: "contain",

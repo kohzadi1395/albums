@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import PropTypes from "prop-types";
 
-//require("../assets/userTest.png")
 
 export class SideBar extends Component {
 
@@ -52,7 +51,7 @@ export class SideBar extends Component {
             menuItemStyle
         } = styles;
 
-
+``
         return (
             <View style={{flex: 1, backgroundColor: "#1e3557"}}>
                 <View style={headerContainer}>
@@ -66,35 +65,35 @@ export class SideBar extends Component {
                     <Text style={headerNameUser}>Kohzadi Hossein</Text>
                     <Text style={headerNameUser}>Kohzadi_hossein@yahoo.com</Text>
                 </View>
-                <TouchableOpacity onPress={this.btnChangeImage.bind(this)}>
+                <TouchableOpacity onPress={this.props.onMenuSelect.bind(this,'artist')}>
                     <View style={menuItemStyle}>
                         <Image style={inputIcon}
                                source={require("../assets/group.png")}/>
-                        <Text style={menuItemTextStyle}>Singers</Text>
+                        <Text style={menuItemTextStyle}>Artist</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.btnChangeImage.bind(this)}>
+                <TouchableOpacity onPress={this.props.onMenuSelect.bind(this,'albums')}>
                     <View style={menuItemStyle}>
                         <Image style={inputIcon}
                                source={require("../assets/note.png")}/>
                         <Text style={menuItemTextStyle}>All Albums</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.btnChangeImage.bind(this)}>
+                <TouchableOpacity onPress={this.props.onMenuSelect.bind(this,'favorite')}>
                     <View style={menuItemStyle}>
                         <Image style={inputIcon}
                                source={require("../assets/favorite.png")}/>
                         <Text style={menuItemTextStyle}>Favorite</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.btnChangeImage.bind(this)}>
+                <TouchableOpacity onPress={this.props.onMenuSelect.bind(this,'setting')}>
                     <View style={menuItemStyle}>
                         <Image style={inputIcon}
                                source={require("../assets/settings.png")}/>
                         <Text style={menuItemTextStyle}>Setting</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.btnChangeImage.bind(this)}>
+                <TouchableOpacity onPress={this.props.onMenuSelect.bind(this,'logout')}>
                     <View style={menuItemStyle}>
                         <Image style={inputIcon}
                                source={require("../assets/logout.png")}/>
@@ -105,6 +104,11 @@ export class SideBar extends Component {
         );
     }
 }
+
+SideBar.propTypes = {
+    onMenuSelect: PropTypes.func
+};
+
 
 const styles = StyleSheet.create({
     headerNameUser: {
