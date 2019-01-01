@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Image, Text, TouchableHighlight, View} from 'react-native';
+import {Image, Text, TouchableHighlight, View, Alert} from 'react-native';
 import PropTypes from "prop-types";
+import {getUserTheme} from "../Utilities/UtilityStringFunc";
 
 
 class Header extends Component {
@@ -15,12 +16,12 @@ class Header extends Component {
         } = styles;
 
         return (
-            <View style={viewStyle}>
+            <View style={[viewStyle, {backgroundColor: this.props.backgroundColor}]}>
                 <TouchableHighlight onPress={this.props.OnMenu}>
                     <Image style={styles.inputIcon}
                            source={require("../assets/HomeCmp/menu.png")}/>
                 </TouchableHighlight>
-                <Text style={textStyle}>Albums</Text>
+                <Text style={[textStyle, {color: this.props.fontColor}]}>Albums</Text>
                 <TouchableHighlight onPress={this.props.OnSearch}>
                     <Image style={styles.inputIcon}
                            source={require("../assets/HomeCmp/search.png")}/>
@@ -32,7 +33,6 @@ class Header extends Component {
 
 const styles = {
     viewStyle: {
-        backgroundColor: "#1e3557",
         justifyContent: 'space-between',
         alignItems: 'center',
         height: 60,
@@ -45,7 +45,6 @@ const styles = {
     },
     textStyle: {
         fontSize: 20,
-        color: '#fff'
     },
     buttonContainer: {
         height: 45,
@@ -66,14 +65,16 @@ const styles = {
 Header.propTypes = {
     OnSearch: PropTypes.func,
     OnMenu: PropTypes.func,
-    ShowMenu:PropTypes.bool,
-    ShowSearch:PropTypes.bool,
-    ShowBack:PropTypes.bool
+    ShowMenu: PropTypes.bool,
+    ShowSearch: PropTypes.bool,
+    ShowBack: PropTypes.bool,
+    fontColor: PropTypes.any,
+    backgroundColor: PropTypes.any,
 };
 
-Header.defaultProps  = {
-    ShowMenu:true,
-    ShowSearch:true,
-    ShowBack:false
+Header.defaultProps = {
+    ShowMenu: true,
+    ShowSearch: true,
+    ShowBack: false
 };
 export {Header};

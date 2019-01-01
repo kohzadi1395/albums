@@ -1,4 +1,6 @@
-export function  NumFormatter(num) {
+import axios from "axios";
+
+export function NumFormatter(num) {
     let si = [
         {value: 1, symbol: ""},
         {value: 1E3, symbol: "k"},
@@ -16,4 +18,22 @@ export function  NumFormatter(num) {
         }
     }
     return (num / si[i].value).toFixed(1).replace(rx, "$1") + si[i].symbol;
+}
+
+
+export function getUserTheme(userId) {
+    //return axios.get('http://www.mocky.io/v2/5c2b0de83000007000abaf1b')         //main
+   // return axios.get('http://www.mocky.io/v2/5c2b138f3000001200abaf21')       //red
+     return axios.get('http://www.mocky.io/v2/5c2b14fc3000004c00abaf25')     //nok medadi
+    //   return axios.get('http://www.mocky.io/v2/5c2b156c3000006900abaf26') //Purple
+        .then(response => {
+            this.response = response.data
+            return this.response
+        })
+
+    // return
+    // {
+    //     fontColor:"#fff",
+    //     backgroundColor: "#1e3557"
+    // };
 }

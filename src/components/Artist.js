@@ -3,8 +3,13 @@ import {Text, SectionList, View, Alert, StyleSheet, Image, TouchableWithoutFeedb
 import axios from "axios";
 import {Spinner} from "./Spinner";
 import LinearGradient from "react-native-linear-gradient";
+import PropTypes from "prop-types";
+import {Header} from "./Header";
 
 class Artist extends Component {
+    constructor(props) {
+        super(props);
+    }
 
     state = {
         artists: []
@@ -13,7 +18,7 @@ class Artist extends Component {
     componentWillMount() {
         // axios.get('http://www.mocky.io/v2/5c248d9330000053007a6024')
         // axios.get('http://www.mocky.io/v2/5c2498f730000051007a6050')
-         axios.get('http://www.mocky.io/v2/5c2778f53000000e000bf727')
+        axios.get('http://www.mocky.io/v2/5c2778f53000000e000bf727')
             .then(response => {
                 this.setState({artists: response.data});
             });
@@ -113,18 +118,19 @@ class Artist extends Component {
                                                  //     borderWidth: 1,
                                                  // }}
                                                  colors={[
-                                                     "#1e3557",
-                                                     "#1e3557",
+                                                     this.props.backgroundColor
                                                  ]}
                                                  // start={{x: 0, y: 0}} end={{x: 1, y: 0}}
                                              >
                                                  <View style={AvatarStyle}>
                                                      <Text style={
-                                                         {
-                                                             color: '#fff',
+                                                         [{
                                                              fontSize: 20,
                                                              fontWeight: 'bold'
-                                                         }}>
+                                                         },
+                                                             {
+                                                                 color: this.props.fontColor
+                                                             }]}>
                                                          {section.FirstCharFirstName}
                                                      </Text>
                                                  </View>
@@ -148,6 +154,10 @@ class Artist extends Component {
     }
 }
 
+Artist.propTypes = {
+    fontColor: PropTypes.any,
+    backgroundColor: PropTypes.any,
+};
 const styles = StyleSheet.create({
     container: {
         flex: 1,

@@ -1,12 +1,16 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity, Alert} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import PropTypes from "prop-types";
+import {getUserTheme} from "../Utilities/UtilityStringFunc";
 
 
 export class SideBar extends Component {
 
-    state = {avatar: require("../assets/SlideBarCmp/userTest.png")};
+    state = {
+        avatar: require("../assets/SlideBarCmp/userTest.png"),
+    };
+
 
 
     btnChangeImage() {
@@ -51,10 +55,9 @@ export class SideBar extends Component {
             menuItemStyle
         } = styles;
 
-``
         return (
-            <View style={{flex: 1, backgroundColor: "#1e3557"}}>
-                <View style={headerContainer}>
+            <View style={{flex: 1, backgroundColor: this.props.backgroundColor}}>
+                <View style={[headerContainer, {backgroundColor: this.props.backgroundColor}]}>
                     <Image style={userImageStyle}
                            source={this.state.avatar}/>
                     <TouchableOpacity onPress={this.btnChangeImage.bind(this)}>
@@ -62,42 +65,42 @@ export class SideBar extends Component {
                                source={require("../assets/SlideBarCmp/camera.png")}/>
                     </TouchableOpacity>
 
-                    <Text style={headerNameUser}>Kohzadi Hossein</Text>
-                    <Text style={headerNameUser}>Kohzadi_hossein@yahoo.com</Text>
+                    <Text style={[headerNameUser, {color: this.props.fontColor}]}>Kohzadi Hossein</Text>
+                    <Text style={[headerNameUser, {color: this.props.fontColor}]}>Kohzadi_hossein@yahoo.com</Text>
                 </View>
-                <TouchableOpacity onPress={this.props.onMenuSelect.bind(this,'artist')}>
+                <TouchableOpacity onPress={this.props.onMenuSelect.bind(this, 'artist')}>
                     <View style={menuItemStyle}>
                         <Image style={inputIcon}
                                source={require("../assets/SlideBarCmp/group.png")}/>
-                        <Text style={menuItemTextStyle}>Artist</Text>
+                        <Text style={[menuItemTextStyle, {color: this.props.fontColor}]}>Artist</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.props.onMenuSelect.bind(this,'albums')}>
+                <TouchableOpacity onPress={this.props.onMenuSelect.bind(this, 'albums')}>
                     <View style={menuItemStyle}>
                         <Image style={inputIcon}
                                source={require("../assets/SlideBarCmp/note.png")}/>
-                        <Text style={menuItemTextStyle}>All Albums</Text>
+                        <Text style={[menuItemTextStyle, {color: this.props.fontColor}]}>All Albums</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.props.onMenuSelect.bind(this,'favorite')}>
+                <TouchableOpacity onPress={this.props.onMenuSelect.bind(this, 'favorite')}>
                     <View style={menuItemStyle}>
                         <Image style={inputIcon}
                                source={require("../assets/SlideBarCmp/favorite.png")}/>
-                        <Text style={menuItemTextStyle}>Favorite</Text>
+                        <Text style={[menuItemTextStyle, {color: this.props.fontColor}]}>Favorite</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.props.onMenuSelect.bind(this,'setting')}>
+                <TouchableOpacity onPress={this.props.onMenuSelect.bind(this, 'setting')}>
                     <View style={menuItemStyle}>
                         <Image style={inputIcon}
                                source={require("../assets/SlideBarCmp/settings.png")}/>
-                        <Text style={menuItemTextStyle}>Setting</Text>
+                        <Text style={[menuItemTextStyle, {color: this.props.fontColor}]}>Setting</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.props.onMenuSelect.bind(this,'logout')}>
+                <TouchableOpacity onPress={this.props.onMenuSelect.bind(this, 'logout')}>
                     <View style={menuItemStyle}>
                         <Image style={inputIcon}
                                source={require("../assets/SlideBarCmp/logout.png")}/>
-                        <Text style={menuItemTextStyle}>Logout</Text>
+                        <Text style={[menuItemTextStyle, {color: this.props.fontColor}]}>Logout</Text>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -106,17 +109,18 @@ export class SideBar extends Component {
 }
 
 SideBar.propTypes = {
-    onMenuSelect: PropTypes.func
+    onMenuSelect: PropTypes.func,
+    fontColor: PropTypes.any,
+    backgroundColor: PropTypes.any,
 };
 
 
 const styles = StyleSheet.create({
     headerNameUser: {
-        color: '#fff',
+
         fontWeight: 'bold'
     },
     headerContainer: {
-        backgroundColor: "#1e3557",
         justifyContent: 'center',
         alignItems: 'center',
         height: 200
@@ -129,8 +133,7 @@ const styles = StyleSheet.create({
 
     },
     menuItemTextStyle: {
-        borderBottomColor: '#FFFFFF',
-        color: '#ffffff',
+       
         fontWeight: 'bold',
         alignItems: 'center',
         marginLeft: 16,
@@ -150,7 +153,5 @@ const styles = StyleSheet.create({
         height: 30,
 
     },
-    SideBarStyle: {
-        backgroundColor: '#ffffff'
-    }
+
 });

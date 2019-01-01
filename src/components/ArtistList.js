@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {ScrollView, View} from 'react-native';
 import axios from 'axios';
-import {ArtistDetail, Header, Spinner} from "../../src";
+import {ArtistDetail, Spinner} from "../../src";
 import PropTypes from "prop-types";
 
 class ArtistList extends Component {
