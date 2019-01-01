@@ -166,14 +166,14 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff"
     },
     SectionHeader: {
-        backgroundColor: '#f67e23',
         fontSize: 20,
         padding: 5,
         color: '#fff',
         fontWeight: 'bold'
     },
     SectionListItemS: {
-        flex: 1, fontSize: 16,
+        flex: 1,
+        fontSize: 16,
         padding: 6,
         color: '#000',
         justifyContent: 'center',
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     },
 
     SectionListItemContainer: {
-        flex: 1,
+        //flex: 1,
         flexDirection: 'row',
         borderBottomWidth: 1,
         borderLeftWidth: 1,

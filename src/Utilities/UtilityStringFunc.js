@@ -23,9 +23,9 @@ export function NumFormatter(num) {
 
 export function getUserTheme(userId) {
     //return axios.get('http://www.mocky.io/v2/5c2b0de83000007000abaf1b')         //main
-    // return axios.get('http://www.mocky.io/v2/5c2b138f3000001200abaf21')       //red
-    return axios.get('http://www.mocky.io/v2/5c2b14fc3000004c00abaf25')     //nok medadi
-    //   return axios.get('http://www.mocky.io/v2/5c2b156c3000006900abaf26') //Purple
+     return axios.get('http://www.mocky.io/v2/5c2b138f3000001200abaf21')       //red
+    // return axios.get('http://www.mocky.io/v2/5c2b14fc3000004c00abaf25')     //nok medadi
+      //return axios.get('http://www.mocky.io/v2/5c2b156c3000006900abaf26') //Purple
         .then(response => {
             this.response = response.data
             return this.response
