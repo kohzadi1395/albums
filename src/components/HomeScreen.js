@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 import {Drawer} from 'native-base';
 import {AlbumList, Artist, Header, SideBar} from "../../src";
-import {getUserTheme} from "../Utilities/UtilityStringFunc";
+import {getUserTheme,Capitalize} from "../Utilities/UtilityStringFunc";
 
 export class HomeScreen extends Component {
 
-
-
-
-    state = {
+state = {
         currentPage: null,
         Theme:null
     };
@@ -48,8 +45,12 @@ export class HomeScreen extends Component {
                 onOpen={this.openDrawer}
                 captureGestures="open"
                 side="left">
-                <Header OnMenu={this.openDrawer.bind(this)} backgroundColor={this.backgroundColor}
-                        fontColor={this.fontColor}/>
+                <Header OnMenu={this.openDrawer.bind(this)}
+                        backgroundColor={this.backgroundColor}
+                        fontColor={this.fontColor}
+                        // title={this.state.currentPage.toUpperCase()}
+                        title={this.state.currentPage?Capitalize(this.state.currentPage):'Albums'}
+                />
                 {
                     this.ShowSelectedPage()
                 }

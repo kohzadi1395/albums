@@ -118,11 +118,12 @@ class Artist extends Component {
                                                  //     borderWidth: 1,
                                                  // }}
                                                  colors={[
+                                                     this.props.backgroundColor,
                                                      this.props.backgroundColor
                                                  ]}
                                                  // start={{x: 0, y: 0}} end={{x: 1, y: 0}}
                                              >
-                                                 <View style={AvatarStyle}>
+                                                 <View style={[AvatarStyle,{backgroundColor:this.props.backgroundColor}]}rr>
                                                      <Text style={
                                                          [{
                                                              fontSize: 20,
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
     AvatarStyle: {
         width: 50,
         height: 50,
-        backgroundColor: '#1E3557',
+
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',

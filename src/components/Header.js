@@ -21,7 +21,7 @@ class Header extends Component {
                     <Image style={styles.inputIcon}
                            source={require("../assets/HomeCmp/menu.png")}/>
                 </TouchableHighlight>
-                <Text style={[textStyle, {color: this.props.fontColor}]}>Albums</Text>
+                <Text style={[textStyle, {color: this.props.fontColor}]}>{this.props.title}</Text>
                 <TouchableHighlight onPress={this.props.OnSearch}>
                     <Image style={styles.inputIcon}
                            source={require("../assets/HomeCmp/search.png")}/>
@@ -70,6 +70,7 @@ Header.propTypes = {
     ShowBack: PropTypes.bool,
     fontColor: PropTypes.any,
     backgroundColor: PropTypes.any,
+    title: PropTypes.string.isRequired,
 };
 
 Header.defaultProps = {
