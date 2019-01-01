@@ -12,7 +12,8 @@ class Artist extends Component {
 
     componentWillMount() {
         // axios.get('http://www.mocky.io/v2/5c248d9330000053007a6024')
-        axios.get('http://www.mocky.io/v2/5c2498f730000051007a6050')
+        // axios.get('http://www.mocky.io/v2/5c2498f730000051007a6050')
+         axios.get('http://www.mocky.io/v2/5c2778f53000000e000bf727')
             .then(response => {
                 this.setState({artists: response.data});
             });
@@ -88,7 +89,8 @@ class Artist extends Component {
             container,
             AvatarStyle,
             SectionListItemS,
-            SectionListItemContainer
+            SectionListItemContainer,
+            markerStyle
         } = styles;
 
         if (!this.state.artists)
@@ -134,6 +136,7 @@ class Artist extends Component {
                                          <Image source={{uri: item.thumbnail_image}} style={thumbnailStyle}/>
                                          <Text style={SectionListItemS}
                                                onPress={this.GetSectionListItem.bind(this, item)}> {item.artist} </Text>
+                                         <Image source={require("../assets/marker.png")} style={markerStyle}/>
 
                                      </View>
                                  }
@@ -194,8 +197,13 @@ const styles = StyleSheet.create({
         height: 70,
         borderRadius: 35,
         margin: 5,
-
     },
+    markerStyle: {
+        width: 30,
+        height: 30,
+        margin: 5,
+    },
+
     SectionListItemContainer: {
         flex: 1,
         flexDirection: 'row',

@@ -48,7 +48,7 @@ class AlbumDetail extends Component {
         return (
             <View style={styles.overlay}>
                 <Animated.Image
-                    source={require('../assets/heart.png')}
+                    source={require('../assets/AlbumDetailCmp/heart.png')}
                     style={imageStyles}
                 />
             </View>
@@ -109,7 +109,7 @@ class AlbumDetail extends Component {
                         <View style={likeContainer}>
                             <TouchableOpacity onPress={this.toggleLike}>
                                 <Image
-                                    source={this.state.liked ? require('../assets/heart.png') : require('../assets/heart-outline.png')}
+                                    source={this.state.liked ? require('../assets/AlbumDetailCmp/heart.png') : require('../assets/AlbumDetailCmp/heart-outline.png')}
                                     style={heartIcon}
                                     resizeMode="cover"
                                 />

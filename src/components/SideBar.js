@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 export class SideBar extends Component {
 
-    state = {avatar: require("../assets/userTest.png")};
+    state = {avatar: require("../assets/SlideBarCmp/userTest.png")};
 
 
     btnChangeImage() {
@@ -59,7 +59,7 @@ export class SideBar extends Component {
                            source={this.state.avatar}/>
                     <TouchableOpacity onPress={this.btnChangeImage.bind(this)}>
                         <Image style={inputIcon}
-                               source={require("../assets/camera.png")}/>
+                               source={require("../assets/SlideBarCmp/camera.png")}/>
                     </TouchableOpacity>
 
                     <Text style={headerNameUser}>Kohzadi Hossein</Text>
@@ -68,35 +68,35 @@ export class SideBar extends Component {
                 <TouchableOpacity onPress={this.props.onMenuSelect.bind(this,'artist')}>
                     <View style={menuItemStyle}>
                         <Image style={inputIcon}
-                               source={require("../assets/group.png")}/>
+                               source={require("../assets/SlideBarCmp/group.png")}/>
                         <Text style={menuItemTextStyle}>Artist</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.props.onMenuSelect.bind(this,'albums')}>
                     <View style={menuItemStyle}>
                         <Image style={inputIcon}
-                               source={require("../assets/note.png")}/>
+                               source={require("../assets/SlideBarCmp/note.png")}/>
                         <Text style={menuItemTextStyle}>All Albums</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.props.onMenuSelect.bind(this,'favorite')}>
                     <View style={menuItemStyle}>
                         <Image style={inputIcon}
-                               source={require("../assets/favorite.png")}/>
+                               source={require("../assets/SlideBarCmp/favorite.png")}/>
                         <Text style={menuItemTextStyle}>Favorite</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.props.onMenuSelect.bind(this,'setting')}>
                     <View style={menuItemStyle}>
                         <Image style={inputIcon}
-                               source={require("../assets/settings.png")}/>
+                               source={require("../assets/SlideBarCmp/settings.png")}/>
                         <Text style={menuItemTextStyle}>Setting</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.props.onMenuSelect.bind(this,'logout')}>
                     <View style={menuItemStyle}>
                         <Image style={inputIcon}
-                               source={require("../assets/logout.png")}/>
+                               source={require("../assets/SlideBarCmp/logout.png")}/>
                         <Text style={menuItemTextStyle}>Logout</Text>
                     </View>
                 </TouchableOpacity>

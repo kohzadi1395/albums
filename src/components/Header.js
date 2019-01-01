@@ -18,12 +18,12 @@ class Header extends Component {
             <View style={viewStyle}>
                 <TouchableHighlight onPress={this.props.OnMenu}>
                     <Image style={styles.inputIcon}
-                           source={require("../assets/menu.png")}/>
+                           source={require("../assets/HomeCmp/menu.png")}/>
                 </TouchableHighlight>
                 <Text style={textStyle}>Albums</Text>
                 <TouchableHighlight onPress={this.props.OnSearch}>
                     <Image style={styles.inputIcon}
-                           source={require("../assets/search.png")}/>
+                           source={require("../assets/HomeCmp/search.png")}/>
                 </TouchableHighlight>
             </View>
         );
