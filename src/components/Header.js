@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Image, Text, TouchableHighlight, View, Alert} from 'react-native';
+import {Image, Text, TouchableHighlight, View} from 'react-native';
 import PropTypes from "prop-types";
-import {getUserTheme} from "../Utilities/UtilityStringFunc";
 
 
 class Header extends Component {

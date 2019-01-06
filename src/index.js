@@ -1,5 +1,3 @@
-import ProgressiveImage from "./components/ProgressiveImage";
-
 export * from './components/Splash'
 export * from './components/Artist'
 export * from './components/Button'
@@ -15,5 +13,7 @@ export * from './components/SideBar'
 export * from './components/Spinner'
 export * from './components/DoubleTap'
 export * from './components/ArtistDetail'
-export * from './components/ArtistList'
+export * from './components/Divider'
+export * from './components/TabView'
+
 

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {Text, SectionList, View, Alert, StyleSheet, Image, TouchableWithoutFeedback} from 'react-native';
+import {Image, SectionList, StyleSheet, Text, View} from 'react-native';
 import axios from "axios";
 import {Spinner} from "./Spinner";
 import LinearGradient from "react-native-linear-gradient";
 import PropTypes from "prop-types";
-import {Header} from "./Header";
+import {ArtistDetail} from "./ArtistDetail";
 
 class Artist extends Component {
     constructor(props) {
@@ -12,7 +12,8 @@ class Artist extends Component {
     }
 
     state = {
-        artists: []
+        artists: [],
+        selectedArtist: null
     };
 
     componentWillMount() {
@@ -84,7 +85,7 @@ class Artist extends Component {
     */
 
     GetSectionListItem(item) {
-        Alert.alert(item.artist);
+        this.setState({selectedArtist: item});
     }
 
     render() {
@@ -98,9 +99,8 @@ class Artist extends Component {
             markerStyle
         } = styles;
 
-        if (!this.state.artists)
-            return (<Spinner/>)
-        else
+
+        if (this.state.artists && !this.state.selectedArtist) {
             return (
                 <View style={container}>
                     <SectionList style={{
@@ -112,18 +112,15 @@ class Artist extends Component {
                                      ({section}) =>
                                          <View>
                                              <LinearGradient
-                                                 //     style={{
-                                                 //     borderTopRightRadius: 25,
-                                                 //     borderTopLeftRadius: 25,
-                                                 //     borderWidth: 1,
-                                                 // }}
                                                  colors={[
                                                      this.props.backgroundColor,
                                                      this.props.backgroundColor
                                                  ]}
                                                  // start={{x: 0, y: 0}} end={{x: 1, y: 0}}
                                              >
-                                                 <View style={[AvatarStyle,{backgroundColor:this.props.backgroundColor}]}rr>
+                                                 <View
+                                                     style={[AvatarStyle, {backgroundColor: this.props.backgroundColor}]}
+                                                     rr>
                                                      <Text style={
                                                          [{
                                                              fontSize: 20,
@@ -144,20 +141,25 @@ class Artist extends Component {
                                          <Text style={SectionListItemS}
                                                onPress={this.GetSectionListItem.bind(this, item)}> {item.artist} </Text>
                                          <Image source={require("../assets/marker.png")} style={markerStyle}/>
-
                                      </View>
                                  }
-
                                  keyExtractor={(item, index) => index}
                     />
                 </View>
             );
+        }
+        else if (this.state.selectedArtist) {
+            return (<ArtistDetail selectedArtist={this.state.selectedArtist}/>);
+        }
+        else {
+            return (<Spinner/>)
+        }
     }
 }
 
 Artist.propTypes = {
-    fontColor: PropTypes.any,
-    backgroundColor: PropTypes.any,
+    fontColor: PropTypes.any.isRequired,
+    backgroundColor: PropTypes.any.isRequired,
 };
 const styles = StyleSheet.create({
     container: {

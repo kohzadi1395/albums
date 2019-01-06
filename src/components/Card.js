@@ -1,5 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
+import PropTypes from 'prop-types';
 
 const Card = (props) => {
     const {
@@ -27,5 +28,7 @@ const styles = {
         marginTop: 10
     }
 };
-
+Card.propTypes = {
+    children: PropTypes.element.isRequired
+};
 export {Card};

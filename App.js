@@ -8,7 +8,7 @@
 
 import React, {Component} from 'react';
 import {StyleSheet} from 'react-native';
-import {LoginView, Splash, HomeScreen, SideBar, Artist, ArtistList} from "./src";
+import {ArtistList, HomeScreen, LoginView, Splash} from "./src";
 
 
 type Props = {};
@@ -30,23 +30,24 @@ export default class App extends Component<Props> {
     }
 
     render() {
-        // if (!this.state.animationFinish) {
-        //     return (
-        //         <Splash OnFinish={() => {
-        //             this.setState({animationFinish: true});
-        //         }
-        //         }/>);
-        // }
-        // if (this.state.isLogin) {
-        //     return (<HomeScreen/>);
-        // }
-        // else
-        //     return (<LoginView OnLogin={this.Login.bind(this)}/>
-        //     );
+        if (!this.state.animationFinish) {
+            return (
+                <Splash OnFinish={() => {
+                    this.setState({animationFinish: true});
+                }
+                }/>);
+        }
+        if (this.state.isLogin) {
+            return (<HomeScreen/>);
+        }
+        else
+            return (<LoginView OnLogin={this.Login.bind(this)}/>
+            );
 
         return (<HomeScreen/>);
         // return (<ArtistList/>);
-        // return (<Artist/>);
+        // return (<Artist backgroundColor='#00f'
+        //                 fontColor='#f00'/>);
         //  return (<MapViewer/>);
     }
 }

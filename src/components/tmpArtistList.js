@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {ScrollView, View} from 'react-native';
 import axios from 'axios';
-import {ArtistDetail, Spinner} from "../../src";
+import {Spinner, TmpArtistDetail} from "../../src";
 import PropTypes from "prop-types";
 
-class ArtistList extends Component {
+class tmpArtistList extends Component {
 
     state = {Artists: null};
 
@@ -29,7 +29,7 @@ class ArtistList extends Component {
         //         return 0;
         //     }
         // )
-            .map((albums, index) => <ArtistDetail key={index} albums={albums}> </ArtistDetail>)
+            .map((albums, index) => <TmpArtistDetail key={index} albums={albums}> </TmpArtistDetail>)
 
     }
 
@@ -48,8 +48,8 @@ class ArtistList extends Component {
     };
 }
 
-ArtistList.propTypes = {
+tmpArtistList.propTypes = {
     OnSearch: PropTypes.func,
     OpenDrawer: PropTypes.func
 };
-export {ArtistList};
+export {tmpArtistList};
