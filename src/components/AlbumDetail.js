@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {Text, View, Image, Linking, Animated, TouchableOpacity} from 'react-native';
-import {Card, CardSection, Button, DoubleTap} from "../../src";
-import { NumFormatter } from '../Utilities/UtilityStringFunc'
-import PropTypes from 'prop-types';
+import {Alert, Animated, Image, Share, Text, TouchableOpacity, View} from 'react-native';
+import {Card, CardSection, DoubleTap} from "../../src";
+import {NumFormatter} from '../Utilities/UtilityStringFunc'
 
 
 class AlbumDetail extends Component {
@@ -67,9 +66,23 @@ class AlbumDetail extends Component {
         }
     };
 
+    shareAlbum() {
+        Share.share({
+            message: this.props.album.artist + ' : ' + this.props.album.title + '\n\n' + this.props.album.url,
+            url: this.props.album.url,
+            title: 'Wow, did you see that?'
+        }, {
+            // Android only:
+            dialogTitle: this.props.album.artist + ' : ' + this.props.album.title,
+            // iOS only
+            excludedActivityTypes: [
+                'com.apple.UIKit.activity.PostToTwitter'
+            ]
+        });
 
+        Alert.alert(this.props.album.title);
 
-
+    }
 
     render() {
         const {
@@ -106,15 +119,27 @@ class AlbumDetail extends Component {
                                 <Text>{artist}</Text>
                             </View>
                         </View>
-                        <View style={likeContainer}>
-                            <TouchableOpacity onPress={this.toggleLike}>
-                                <Image
-                                    source={this.state.liked ? require('../assets/AlbumDetailCmp/heart.png') : require('../assets/AlbumDetailCmp/heart-outline.png')}
-                                    style={heartIcon}
-                                    resizeMode="cover"
-                                />
-                            </TouchableOpacity>
-                            <Text>{NumFormatter(liked)}</Text>
+                        <View style={{flexDirection: 'row'}}>
+                            <View style={likeContainer}>
+                                <TouchableOpacity onPress={this.shareAlbum.bind(this)}>
+                                    <Image
+                                        source={require('../assets/AlbumDetailCmp/shareBlack.png')}
+                                        style={heartIcon}
+                                        resizeMode="cover"
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={likeContainer}>
+                                <TouchableOpacity onPress={this.toggleLike}>
+                                    <Image
+                                        source={this.state.liked ? require('../assets/AlbumDetailCmp/heart.png') : require('../assets/AlbumDetailCmp/heart-outline.png')}
+                                        style={heartIcon}
+                                        resizeMode="cover"
+                                    />
+                                </TouchableOpacity>
+                                <Text>{NumFormatter(liked)}</Text>
+                            </View>
+
                         </View>
                     </View>
                 </CardSection>
@@ -131,9 +156,49 @@ class AlbumDetail extends Component {
 
                 </CardSection>
                 <CardSection>
-                    <Button OnPress={() => Linking.openURL(url)}>
-                        Buy Now
-                    </Button>
+                    <View style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'row', backgroundColor: '#1e3557',
+                        height: 60,
+                        borderRadius: 30,
+                        marginBottom: 5,
+                    }}>
+                        <Image source={require('../assets/AlbumDetailCmp/shopping-add.png')} style={{
+                            width: 30,
+                            height: 30,
+                            marginRight: 30,
+                            marginBottom: 5,
+                        }}/>
+                        <Text style={{color: '#fff', fontSize: 20}}>Add to Card</Text>
+                        {/*<Image source={require('../assets/AlbumDetailCmp/shopping-add.png')} style={{*/}
+                        {/*width: 30,*/}
+                        {/*height: 30,*/}
+                        {/*}}/>*/}
+                        {/*<TouchableOpacity OnPress={() => Linking.openURL(url)}>*/}
+                        {/*<Image source={require('../assets/AlbumDetailCmp/eye.png')} style={{*/}
+                        {/*width: 30,*/}
+                        {/*height: 30,*/}
+                        {/*}}/>*/}
+                        {/*</TouchableOpacity>*/}
+                        {/*<DoubleTap onDoubleTap={this.toggleLike}>*/}
+                        {/*<Image source={require('../assets/AlbumDetailCmp/heart-outline-white.png')} style={{*/}
+                        {/*width: 30,*/}
+                        {/*height: 30,*/}
+                        {/*}}/>*/}
+                        {/*</DoubleTap>*/}
+                        {/*<Image source={require('../assets/AlbumDetailCmp/share.png')} style={{*/}
+                        {/*width: 30,*/}
+                        {/*height: 30,*/}
+                        {/*}}/>*/}
+
+                    </View>
+                    {/*<Button OnPress={() => Linking.openURL(url)}>*/}
+                    {/*Buy Now*/}
+                    {/*</Button>*/}
+                    <View>
+
+                    </View>
                 </CardSection>
             </Card>
         );
@@ -145,7 +210,6 @@ const styles = {
     mainContentStyle: {
         flexDirection: 'row',
         justifyContent: 'space-between'
-
     },
     headerContentStyle: {
         flexDirection: 'column',

@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity, Alert} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import PropTypes from "prop-types";
-import {getUserTheme} from "../Utilities/UtilityStringFunc";
 
 
 export class SideBar extends Component {

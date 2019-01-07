@@ -8,7 +8,7 @@
 
 import React, {Component} from 'react';
 import {StyleSheet} from 'react-native';
-import {ArtistList, HomeScreen, LoginView, Splash} from "./src";
+import {HomeScreen, LoginView, Splash} from "./src";
 
 
 type Props = {};
@@ -41,10 +41,9 @@ export default class App extends Component<Props> {
             return (<HomeScreen/>);
         }
         else
-            return (<LoginView OnLogin={this.Login.bind(this)}/>
-            );
+            return (<LoginView OnLogin={this.Login.bind(this)}/>);
 
-        return (<HomeScreen/>);
+        // return (<HomeScreen/>);
         // return (<ArtistList/>);
         // return (<Artist backgroundColor='#00f'
         //                 fontColor='#f00'/>);

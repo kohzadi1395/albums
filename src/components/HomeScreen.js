@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import {Drawer} from 'native-base';
 import {AlbumList, Artist, Header, SideBar} from "../../src";
-import {getUserTheme,Capitalize} from "../Utilities/UtilityStringFunc";
+import {Capitalize, getUserTheme} from "../Utilities/UtilityStringFunc";
+import {Alert, BackHandler} from "react-native";
 
 export class HomeScreen extends Component {
 
-state = {
+    state = {
         currentPage: null,
-        Theme:null
+        Theme: null
     };
     closeDrawer = () => {
         this.drawer._root.close()
@@ -17,8 +18,24 @@ state = {
     };
     backgroundColor: any;
     fontColor: any;
+    backPressed = () => {
+        Alert.alert(
+            'Exit App',
+            'Do you want to exit?',
+            [
+                {text: 'No', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                {text: 'Yes', onPress: () => BackHandler.exitApp()},
+            ],
+            {cancelable: false});
+        return true;
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.backPressed);
+    }
 
     componentWillMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.backPressed);
         getUserTheme().then(data => {
             this.setState({
                 Theme: data
@@ -26,6 +43,9 @@ state = {
         });
     }
 
+    setCurrentPage(page) {
+        this.setState({currentPage: page});
+    }
 
     render() {
 
@@ -48,18 +68,14 @@ state = {
                 <Header OnMenu={this.openDrawer.bind(this)}
                         backgroundColor={this.backgroundColor}
                         fontColor={this.fontColor}
-                        // title={this.state.currentPage.toUpperCase()}
-                        title={this.state.currentPage?Capitalize(this.state.currentPage):'Albums'}
+                    // title={this.state.currentPage.toUpperCase()}
+                        title={this.state.currentPage ? Capitalize(this.state.currentPage) : 'Albums'}
                 />
                 {
                     this.ShowSelectedPage()
                 }
             </Drawer>
         );
-    }
-
-    setCurrentPage(page) {
-        this.setState({currentPage: page});
     }
 
     ShowSelectedPage() {
@@ -74,6 +90,9 @@ state = {
         else if (this.state.currentPage === 'albums') {
             this.closeDrawer();
             return (<AlbumList/>);
+        }
+        else if (this.state.currentPage === 'logout') {
+            this.backPressed();
         }
     }
 

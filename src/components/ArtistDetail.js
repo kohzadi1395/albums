@@ -3,13 +3,30 @@ import {ImageBackground, StyleSheet, Text, View,} from 'react-native';
 
 import PropTypes from "prop-types";
 import {Divider, TabView} from "../../src";
+import {NumFormatter} from "../Utilities/UtilityStringFunc";
 
-const FirstRoute = () => (
-    <View style={[styles.scene, {backgroundColor: '#ff4081'}]}/>
+const Videos = () => (
+    <View style={[styles.scene, {backgroundColor: '#ff4081'}]}>
+        <Text>Videos</Text>
+    </View>
 );
-const SecondRoute = () => (
-    <View style={[styles.scene, {backgroundColor: '#673ab7'}]}/>
+const Musics = () => (
+    <View style={[styles.scene, {backgroundColor: '#673ab7'}]}>
+        <Text>Musics</Text>
+    </View>
 );
+
+const Events = () => (
+    <View style={[styles.scene, {backgroundColor: '#ff4081'}]}>
+        <Text>Events</Text>
+    </View>
+);
+const News = () => (
+    <View style={[styles.scene, {backgroundColor: '#673ab7'}]}>
+        <Text>News</Text>
+    </View>
+);
+
 
 class ArtistDetail extends Component {
 
@@ -28,7 +45,11 @@ class ArtistDetail extends Component {
 
         const {
             artist,
-            thumbnail_image
+            thumbnail_image,
+            follower,
+            following,
+            liked,
+
         } = this.props.selectedArtist;
 
         return (
@@ -42,7 +63,6 @@ class ArtistDetail extends Component {
                     width: '100%',
                     flexDirection: 'row',
                     justifyContent: 'center',
-                    // alignItems: 'center',
                     position: 'relative',
                 }}>
                     <View style={{
@@ -75,17 +95,17 @@ class ArtistDetail extends Component {
                         }
                         }>
                             <View style={followContainerStyle}>
-                                <Text style={followCountStyle}>1434</Text>
+                                <Text style={followCountStyle}>{NumFormatter(follower)}</Text>
                                 <Text style={followStyle}>Followers</Text>
                             </View>
                             <Divider/>
                             <View style={followContainerStyle}>
-                                <Text style={followCountStyle}>1121</Text>
+                                <Text style={followCountStyle}>{NumFormatter(following)}</Text>
                                 <Text style={followStyle}>Following</Text>
                             </View>
                             <Divider/>
                             <View style={followContainerStyle}>
-                                <Text style={followCountStyle}>4507</Text>
+                                <Text style={followCountStyle}>{NumFormatter(liked)}</Text>
                                 <Text style={followStyle}>Likes</Text>
                             </View>
                         </View>
@@ -95,23 +115,23 @@ class ArtistDetail extends Component {
                                  tabs={[
                                      {
                                          title: 'News',
-                                         body: <Text>News</Text>,
+                                         body: News(),
                                          selected: true
                                      },
                                      {
                                          title: 'Video',
-                                         body: <Text>Video</Text>,
+                                         body: Videos(),
                                          selected: false
 
                                      },
                                      {
                                          title: 'Musics',
-                                         body: <Text>Musics</Text>,
+                                         body: Musics(),
                                          selected: false
                                      },
                                      {
                                          title: 'Events',
-                                         body: <Text>Events</Text>,
+                                         body: Events(),
                                          selected: false
                                      },
                                  ]}

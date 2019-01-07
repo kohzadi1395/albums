@@ -40,7 +40,6 @@ const styles = {
         shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.2,
         flexDirection: 'row'
-
     },
     textStyle: {
         fontSize: 20,
@@ -71,7 +70,6 @@ Header.propTypes = {
     backgroundColor: PropTypes.any,
     title: PropTypes.string.isRequired,
 };
-
 Header.defaultProps = {
     ShowMenu: true,
     ShowSearch: true,
