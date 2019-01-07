@@ -23,7 +23,7 @@ class TabView extends Component {
     renderTabHeader() {
         if (this.state.tabs && this.state.tabs.length > 0) {
             return this.state.tabs.map((tab, index) =>
-                <View>
+                <View key={index + 1000}>
                     <Text key={index}
                           style={[styles.textMenuStyle, tab.selected ? {color: '#737373'} : {color: '#d3d3d3'}]}
                           onPress={() => {

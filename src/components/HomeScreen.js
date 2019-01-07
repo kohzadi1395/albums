@@ -8,7 +8,9 @@ export class HomeScreen extends Component {
 
     state = {
         currentPage: null,
-        Theme: null
+        Theme: null,
+        backClickCount: 0,
+
     };
     closeDrawer = () => {
         this.drawer._root.close()
@@ -16,8 +18,10 @@ export class HomeScreen extends Component {
     openDrawer = () => {
         this.drawer._root.open()
     };
+
     backgroundColor: any;
     fontColor: any;
+
     backPressed = () => {
         Alert.alert(
             'Exit App',
@@ -28,7 +32,7 @@ export class HomeScreen extends Component {
             ],
             {cancelable: false});
         return true;
-    }
+    };
 
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.backPressed);
