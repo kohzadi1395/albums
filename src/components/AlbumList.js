@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {ScrollView, View} from 'react-native';
 import axios from 'axios';
 import {AlbumDetail, Spinner} from "../../src";
-import PropTypes from "prop-types";
 
 class AlbumList extends Component {
 
