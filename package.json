@@ -14,9 +14,12 @@
     "prop-types": "latest",
     "react": "16.6.1",
     "react-native": "0.57.7",
+    "react-native-image-gallery": "^2.1.5",
     "react-native-image-picker": "^0.27.2",
+    "react-native-interactive-image-gallery": "^0.1.2",
     "react-native-linear-gradient": "^2.5.3",
     "react-native-navigation": "^2.2.5",
+    "react-native-tab-view": "latest",
     "react-native-vector-icons": "^6.1.0",
     "react-navigation": "^3.0.9"
   },

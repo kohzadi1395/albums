@@ -17,5 +17,7 @@ export * from './components/DoubleTap'
 export * from './components/Divider'
 export * from './components/TabView'
 export * from './components/Setting'
+export * from './components/Gallery'
+export * from './components/NewsRow'
 
 

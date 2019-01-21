@@ -1,37 +1,79 @@
 import React, {Component} from 'react';
-import {ImageBackground, StyleSheet, Text, View,} from 'react-native';
-
+import {ImageBackground, ScrollView, Text, View,} from 'react-native';
 import PropTypes from "prop-types";
-import {Divider, TabView} from "../../src";
+import {Divider} from "../../src";
 import {NumFormatter} from "../Utilities/UtilityStringFunc";
-
-const Videos = () => (
-    <View style={[styles.scene, {backgroundColor: '#ff4081'}]}>
-        <Text>Videos</Text>
-    </View>
-);
-const Musics = () => (
-    <View style={[styles.scene, {backgroundColor: '#673ab7'}]}>
-        <Text>Musics</Text>
-    </View>
-);
-
-const Events = () => (
-    <View style={[styles.scene, {backgroundColor: '#ff4081'}]}>
-        <Text>Events</Text>
-    </View>
-);
-const News = () => (
-    <View style={[styles.scene, {backgroundColor: '#673ab7'}]}>
-        <Text>News</Text>
-    </View>
-);
-
+import axios from "axios";
+import {NewsRow} from "./NewsRow";
+import {Gallery} from "./Gallery";
 
 class ArtistDetail extends Component {
 
+    state = {
+        selectedTab: '',
+        news: [],
+        images: [],
+    };
+
     constructor(props) {
         super(props);
+    }
+
+    getPic() {
+        return <Gallery url={'http://www.mocky.io/v2/5c457dca3200003615af173e'}/>;
+    }
+
+    getVideos() {
+        axios.get('http://www.mocky.io/v2/5c43118f3800004f00072dba')
+            .then(response => this.setState({news: response.data}))
+            .catch(function (error) {
+                console.log(error);
+                Alert.alert('error', error);
+            });
+        return this.state.news.map((news, index) => <NewsRow key={index} news={news}> </NewsRow>)
+    }
+
+    getMusic() {
+        axios.get('http://www.mocky.io/v2/5c43118f3800004f00072dba')
+            .then(response => this.setState({news: response.data}))
+            .catch(function (error) {
+                console.log(error);
+                Alert.alert('error', error);
+            });
+        return this.state.news.map((news, index) => <NewsRow key={index} news={news}> </NewsRow>)
+    }
+
+
+    renderBody() {
+
+
+        switch (this.state.selectedTab) {
+            case 'News':
+                return this.getNews();
+                break;
+            case 'Pic':
+                return this.getPic();
+                break;
+            case 'Videos':
+                return this.getVideos();
+                break;
+            case 'Music':
+                return this.getMusic();
+                break;
+            default:
+            // code block
+        }
+
+    }
+
+    getNews() {
+        axios.get('http://www.mocky.io/v2/5c43118f3800004f00072dba')
+            .then(response => this.setState({news: response.data}))
+            .catch(function (error) {
+                console.log(error);
+                Alert.alert('error', error);
+            });
+        return this.state.news.map((news, index) => <NewsRow key={index} news={news}> </NewsRow>)
     }
 
     render() {
@@ -52,18 +94,19 @@ class ArtistDetail extends Component {
 
         } = this.props.selectedArtist;
 
+
         return (
             <View style={container}>
                 <ImageBackground source={{uri: thumbnail_image}}
                                  style={thumbnailStyle}
                                  resizeMode={'stretch'}>
-
                 </ImageBackground>
                 <View style={{
                     width: '100%',
                     flexDirection: 'row',
                     justifyContent: 'center',
                     position: 'relative',
+
                 }}>
                     <View style={{
                         width: 350,
@@ -111,35 +154,55 @@ class ArtistDetail extends Component {
                         </View>
                     </View>
                     <View>
-                        <TabView style={{}}
-                                 tabs={[
-                                     {
-                                         title: 'News',
-                                         body: News(),
-                                         selected: true
-                                     },
-                                     {
-                                         title: 'Video',
-                                         body: Videos(),
-                                         selected: false
-
-                                     },
-                                     {
-                                         title: 'Musics',
-                                         body: Musics(),
-                                         selected: false
-                                     },
-                                     {
-                                         title: 'Events',
-                                         body: Events(),
-                                         selected: false
-                                     },
-                                 ]}
-                        />
+                        <View style={styles.tabContainer}>
+                            <View>
+                                <Text
+                                    style={[styles.textMenuStyle, this.state.selectedTab === 'Pic' ? {color: '#737373'} : {color: '#d3d3d3'}]}
+                                    onPress={() => {
+                                        this.setState({selectedTab: 'Pic'});
+                                    }}
+                                >
+                                    Picture
+                                </Text>
+                            </View>
+                            <View>
+                                <Text
+                                    style={[styles.textMenuStyle, this.state.selectedTab === 'Music' ? {color: '#737373'} : {color: '#d3d3d3'}]}
+                                    onPress={() => {
+                                        this.setState({selectedTab: 'Music'});
+                                    }}
+                                >
+                                    Music
+                                </Text>
+                            </View>
+                            <View>
+                                <Text
+                                    style={[styles.textMenuStyle, this.state.selectedTab === 'Videos' ? {color: '#737373'} : {color: '#d3d3d3'}]}
+                                    onPress={() => {
+                                        this.setState({selectedTab: 'Videos'});
+                                    }}
+                                >
+                                    Videos
+                                </Text>
+                            </View>
+                            <View>
+                                <Text
+                                    style={[styles.textMenuStyle, this.state.selectedTab === 'News' ? {color: '#737373'} : {color: '#d3d3d3'}]}
+                                    onPress={() => {
+                                        this.setState({selectedTab: 'News'});
+                                    }}
+                                >
+                                    News
+                                </Text>
+                            </View>
+                        </View>
+                        <View style={{height: 160}}>
+                            <ScrollView>
+                                {this.renderBody()}
+                            </ScrollView>
+                        </View>
                     </View>
                 </View>
-
-
             </View>
         );
     }
@@ -150,7 +213,7 @@ ArtistDetail.propTypes = {
 };
 
 
-const styles = StyleSheet.create({
+const styles = {
     container: {
         flex: 1,
         alignItems: "center",
@@ -181,8 +244,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         color: '#fff',
         fontSize: 15,
-
-
     },
     AvatarTextStyle: {
         width: 50,
@@ -231,5 +292,18 @@ const styles = StyleSheet.create({
     scene: {
         flex: 1,
     },
-});
+    tabContainer: {
+        flexDirection: 'row',
+        marginTop: 30,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+
+    },
+    textMenuStyle: {
+        fontSize: 20,
+        marginLeft: 25,
+        marginRight: 25,
+        marginTop: 15
+    },
+};
 export {ArtistDetail};
