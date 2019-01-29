@@ -151,7 +151,6 @@ class AlbumDetail extends Component {
                                 </View>
                             </DoubleTap>
                         </View>
-
                     </CardSection>
                     <CardSection>
                         <TouchableOpacity OnPress={() => Linking.openURL(url)}>
