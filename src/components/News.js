@@ -1,15 +1,14 @@
 import React, {Component} from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
-import {GalleryItem, Spinner} from "../../src";
-import {ScrollView, View} from "react-native";
+import {NewsItem, Spinner} from "../../src";
+import {Dimensions, ScrollView, View} from "react-native";
 
-
-class Gallery extends Component {
+class News extends Component {
 
     state = {
-        pictures: [],
-        selectedImage: null,
+        news: [],
+        selectedNews: null,
     };
 
     constructor(props) {
@@ -18,29 +17,28 @@ class Gallery extends Component {
 
     componentWillMount() {
         axios.get(this.props.url)
-            .then(response => this.setState({pictures: response.data}));
-    }
+            .then(response => this.setState({news: response.data}));
 
-    GalleryItemPress(image) {
 
     }
 
     renderGallery() {
-        return this.state.pictures.map(
-            (image, index) => <GalleryItem key={index} Image={image}/>)
+        return this.state.news.map(
+            (news, index) => <NewsItem key={index} news={news}/>)
     }
 
     render() {
-        if (!this.state.pictures) {
+        const {height, width} = Dimensions.get('window');
+        if (!this.state.news) {
             return (<Spinner size='large'/>);
         }
         else {
             return (
                 <View style={{
-                    width: '100%',
-                    height: '100%'
+                    minHeight: 100,
+                    width: width,
                 }}>
-                    <ScrollView horizontal={true}>
+                    <ScrollView>
                         {this.renderGallery()}
                     </ScrollView>
                 </View>);
@@ -48,7 +46,7 @@ class Gallery extends Component {
     };
 }
 
-Gallery.propTypes = {
+News.propTypes = {
     url: PropTypes.string.isRequired
 };
-export {Gallery};
+export {News};

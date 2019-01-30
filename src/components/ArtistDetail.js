@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
-import {ImageBackground, ScrollView, Text, View,} from 'react-native';
+import {Alert, Dimensions, ImageBackground, Text, View} from 'react-native';
 import PropTypes from "prop-types";
-import {Divider} from "../../src";
+import {Divider, Gallery, News} from "../../src";
 import {NumFormatter} from "../Utilities/UtilityStringFunc";
 import axios from "axios";
-import {NewsRow} from "./NewsRow";
-import {Gallery} from "./Gallery";
 
 class ArtistDetail extends Component {
 
     state = {
-        selectedTab: '',
+        selectedTab: 'Pic',
         news: [],
         images: [],
     };
@@ -19,9 +17,6 @@ class ArtistDetail extends Component {
         super(props);
     }
 
-    getPic() {
-        return <Gallery url={'http://www.mocky.io/v2/5c457dca3200003615af173e'}/>;
-    }
 
     getVideos() {
         axios.get('http://www.mocky.io/v2/5c43118f3800004f00072dba')
@@ -43,25 +38,19 @@ class ArtistDetail extends Component {
         return this.state.news.map((news, index) => <NewsRow key={index} news={news}> </NewsRow>)
     }
 
-
     renderBody() {
-
-
         switch (this.state.selectedTab) {
             case 'News':
-                return this.getNews();
-                break;
+                return <News url={'http://www.mocky.io/v2/5c43118f3800004f00072dba'}/>;
             case 'Pic':
-                return this.getPic();
-                break;
+                return <Gallery url={'http://www.mocky.io/v2/5c457dca3200003615af173e'}/>;
             case 'Videos':
-                return this.getVideos();
-                break;
+                return <News url={'http://www.mocky.io/v2/5c43118f3800004f00072dba'}/>;
             case 'Music':
-                return this.getMusic();
-                break;
+                return <News url={'http://www.mocky.io/v2/5c43118f3800004f00072dba'}/>;
             default:
-            // code block
+                return <Gallery url={'http://www.mocky.io/v2/5c457dca3200003615af173e'}/>;
+
         }
 
     }
@@ -94,7 +83,7 @@ class ArtistDetail extends Component {
 
         } = this.props.selectedArtist;
 
-
+        const {height, width} = Dimensions.get('window');
         return (
             <View style={container}>
                 <ImageBackground source={{uri: thumbnail_image}}
@@ -106,18 +95,18 @@ class ArtistDetail extends Component {
                     flexDirection: 'row',
                     justifyContent: 'center',
                     position: 'relative',
-
+                    minHeight: '20%'
                 }}>
                     <View style={{
                         width: 350,
-                        height: 120,
+                        minHeight: '85%',
                         backgroundColor: '#2d324f',
                         position: 'absolute',
-                        marginTop: -80,
+                        marginTop: -90,
                         borderRadius: 10,
                         alignItems: 'center',
                         flexDirection: 'column',
-                        zIndex: 2
+                        zIndex: 3
                     }
                     }>
                         <Text style={{
@@ -153,11 +142,18 @@ class ArtistDetail extends Component {
                             </View>
                         </View>
                     </View>
-                    <View>
-                        <View style={styles.tabContainer}>
-                            <View>
-                                <Text
-                                    style={[styles.textMenuStyle, this.state.selectedTab === 'Pic' ? {color: '#737373'} : {color: '#d3d3d3'}]}
+                    <View style={{minHeight: '15%'}}>
+                        <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-around',
+                            alignItems: 'flex-end',
+                            height: 40,
+                        }}>
+                            < View>
+                                < Text
+                                    style={
+                                        [styles.textMenuStyle,
+                                            this.state.selectedTab === 'Pic' ? {color: '#737373'} : {color: '#d3d3d3'}]}
                                     onPress={() => {
                                         this.setState({selectedTab: 'Pic'});
                                     }}
@@ -190,16 +186,23 @@ class ArtistDetail extends Component {
                                     style={[styles.textMenuStyle, this.state.selectedTab === 'News' ? {color: '#737373'} : {color: '#d3d3d3'}]}
                                     onPress={() => {
                                         this.setState({selectedTab: 'News'});
-                                    }}
-                                >
+                                    }}>
                                     News
                                 </Text>
                             </View>
                         </View>
-                        <View style={{height: 160}}>
-                            <ScrollView>
-                                {this.renderBody()}
-                            </ScrollView>
+                        <View
+                            style={{
+                                backgroundColor: '#ffffff',
+                                borderColor: 'red',
+                                borderWidth: 1,
+                                width: width,
+                                marginLeft: 15,
+                                marginRight: 15,
+                                minHeight: 120,
+                                height: '100%',
+                            }}>
+                            {this.renderBody()}
                         </View>
                     </View>
                 </View>
@@ -219,6 +222,7 @@ const styles = {
         alignItems: "center",
         backgroundColor: "#ffffff",
 
+
     },
     SectionHeader: {
         fontSize: 20,
@@ -237,7 +241,7 @@ const styles = {
     },
     AvatarStyle: {
         width: 50,
-        height: 50,
+        minHeight: 50,
 
         flex: 1,
         justifyContent: 'center',
@@ -247,7 +251,7 @@ const styles = {
     },
     AvatarTextStyle: {
         width: 50,
-        height: 50,
+        minHeight: 50,
         backgroundColor: '#fff',
         borderColor: '#000',
         borderWidth: 1,
@@ -259,12 +263,12 @@ const styles = {
 
     }, thumbnailStyle: {
         width: '100%',
-        height: 420,
+        minHeight: '60%',
 
     },
     markerStyle: {
         width: 30,
-        height: 30,
+        minHeight: 30,
         margin: 5,
     },
     SectionListItemContainer: {
@@ -294,16 +298,16 @@ const styles = {
     },
     tabContainer: {
         flexDirection: 'row',
-        marginTop: 30,
+        // marginTop: 30,
         justifyContent: 'space-between',
-        alignItems: 'center',
+        // alignItems: 'center',
+
 
     },
     textMenuStyle: {
         fontSize: 20,
         marginLeft: 25,
         marginRight: 25,
-        marginTop: 15
     },
 };
 export {ArtistDetail};

@@ -1,17 +1,15 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 import PropTypes from "prop-types";
-import {NewsRow} from "./NewsRow";
 import axios from "axios";
+import {NewsItem} from "./NewsItem";
 
 class TabView extends Component {
-
 
     state = {
         tabs: [],
         selectedTab: null,
     };
-
 
     constructor(props) {
         super(props);
@@ -69,7 +67,7 @@ class TabView extends Component {
 
     News() {
         // if (!this.state.news && this.state.news.size() > 0)
-        return this.state.news.map((news, index) => <NewsRow key={index} news={news}> </NewsRow>)
+        return this.state.news.map((news, index) => <NewsItem key={index} news={news}> </NewsItem>)
     }
 
     render() {

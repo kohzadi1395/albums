@@ -18,6 +18,8 @@ export * from './components/Divider'
 export * from './components/TabView'
 export * from './components/Setting'
 export * from './components/Gallery'
-export * from './components/NewsRow'
+export * from './components/News'
+export * from './components/NewsItem'
+export * from './components/GalleryItem'
 
 
