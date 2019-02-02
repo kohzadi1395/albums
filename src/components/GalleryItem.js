@@ -41,7 +41,12 @@ class GalleryItem extends Component {
                 source={{uri: Url}}
                 style={{
                     width: 200,
-                    height: 200,
+                    height: '100%',
+                    // resizeMode:'stretch',
+                    resizeMode: 'contain',
+                    //  resizeMode:'cover',
+                    // resizeMode:'center',
+                    // resizeMode:'repeat',
                 }}/>);
         } else
             return <View/>;

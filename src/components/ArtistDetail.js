@@ -194,13 +194,12 @@ class ArtistDetail extends Component {
                         <View
                             style={{
                                 backgroundColor: '#ffffff',
-                                borderColor: 'red',
-                                borderWidth: 1,
                                 width: width,
                                 marginLeft: 15,
                                 marginRight: 15,
-                                minHeight: 120,
-                                height: '100%',
+                                minHeight: 100,
+                                // height: 220,
+                                height: '55%',
                             }}>
                             {this.renderBody()}
                         </View>
