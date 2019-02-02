@@ -17,12 +17,20 @@ class NewsItem extends Component {
         return (
             <Card>
                 <View style={styles.newsRowContainer}>
-                    <View>
+                    <View style={{
+                        minWidth: 60,
+                        width: '20%',
+                        marginLeft: 5
+                    }}>
                         <Image source={{uri: ThumbnailImage}}
                                style={styles.thumbnailStyle}/>
                     </View>
-                    <View>
-                        <Text style={styles.titleStyle}>{Title.substring(0, 40) + ' ... '}</Text>
+                    <View style={{
+                        minWidth: 60,
+                        width: '80%',
+                        marginLeft: 5
+                    }}>
+                        <Text numberOfLines={2} style={styles.titleStyle}>{Title}</Text>
                     </View>
                 </View>
             </Card>
@@ -41,19 +49,12 @@ const styles = {
     titleStyle: {
         fontSize: 20,
         fontWeight: 'bold',
-        overflow: 'hidden',
-        marginRight: 5,
-        marginLeft: 5,
-
     },
     newsRowContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
         height: 80,
-        margin: 5,
-
     }
 };
 
